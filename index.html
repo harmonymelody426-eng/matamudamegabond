@@ -12,7 +12,8 @@
         * { box-sizing: border-box; }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: url('https://harmonymelody426-eng.github.io/matamudamegabond/backdrop.jpg') no-repeat center center fixed;
+            /* BACKDROP UTAMAMU TIDAK DIGANGGU */
+            background: url('https://lh3.googleusercontent.com/d/1DWgcohqNfViclL0SIQIIo2QmTyBhKyEX') no-repeat center center fixed;
             background-size: cover;
             color: #2c3e50;
             margin: 0;
@@ -24,13 +25,15 @@
             overflow: hidden;
         }
 
-        /* --- CONTAINER UTAMA: PAPAN GAME KARTUN 3D NYATU SAMA BACKDROP --- */
+        /* --- CONTAINER UTAMA: SULAP JADI PAPAN MENU GAME 4D --- */
         .container {
             width: 92%;
             max-width: 1200px;
+            /* Warna krem kuning susu khas kartun anak */
             background: linear-gradient(135deg, #fffdf0 0%, #fff9d6 100%); 
             padding: 40px;
             border-radius: 45px;
+            /* Kombinasi border tebal & shadow 3D tebal di bawahnya */
             border: 8px solid #1b5e20;
             box-shadow: 
                 0 18px 0px #0a330e, 
@@ -49,6 +52,7 @@
             margin: 0 0 6px 0; 
             font-size: 38px;
             font-weight: 700;
+            /* Efek teks 3D pop-out tebal */
             text-shadow: 3px 3px 0px #ffd700, 6px 6px 0px #0a330e;
         }
         h2 { 
@@ -70,7 +74,7 @@
             min-height: 410px;
         }
 
-        /* --- BINGKAI FOTO USTADZ KARTUN POP-ART (KIRI) --- */
+        /* --- BINGKAI FOTO PEMATERI KARTUN POP-ART --- */
         .speakers-column {
             flex: 1.2;
             display: flex;
@@ -119,7 +123,7 @@
             z-index: 5;
         }
 
-        /* --- KOTAK DETAIL MATERI (KANAN) --- */
+        /* --- KARTU MATERI SEBELAH KANAN --- */
         .info-column {
             flex: 1;
             display: flex;
@@ -161,7 +165,7 @@
             font-weight: 600;
         }
 
-        /* --- TIMER JELLY BALON MERAH EMAS --- */
+        /* --- TIMER BALON EMAS & MERAH --- */
         .timer-section {
             display: flex;
             align-items: center;
@@ -192,7 +196,7 @@
             box-shadow: 0 4px 0px #01579b;
         }
 
-        /* --- TOMBOL KARTUN JELLY 3D --- */
+        /* --- TOMBOL JELLY 3D (BISA MEMBAL DIKLIK) --- */
         .controls {
             display: flex;
             gap: 12px;
@@ -210,13 +214,25 @@
             transition: transform 0.1s ease, box-shadow 0.1s ease;
         }
         
-        .btn-start { background: linear-gradient(to bottom, #4caf50, #2e7d32); color: white; box-shadow: 0 6px 0px #0c3a10; }
+        .btn-start { 
+            background: linear-gradient(to bottom, #4caf50, #2e7d32); 
+            color: white; 
+            box-shadow: 0 6px 0px #0c3a10; 
+        }
         .btn-start:active { transform: translateY(6px); box-shadow: 0 0px 0px #0c3a10; }
 
-        .btn-pause { background: linear-gradient(to bottom, #ffb300, #ff8f00); color: white; box-shadow: 0 6px 0px #b56500; }
+        .btn-pause { 
+            background: linear-gradient(to bottom, #ffb300, #ff8f00); 
+            color: white; 
+            box-shadow: 0 6px 0px #b56500; 
+        }
         .btn-pause:active { transform: translateY(6px); box-shadow: 0 0px 0px #b56500; }
 
-        .btn-next { background: linear-gradient(to bottom, #29b6f6, #0288d1); color: white; box-shadow: 0 6px 0px #01579b; }
+        .btn-next { 
+            background: linear-gradient(to bottom, #29b6f6, #0288d1); 
+            color: white; 
+            box-shadow: 0 6px 0px #01579b; 
+        }
         .btn-next:active { transform: translateY(6px); box-shadow: 0 0px 0px #01579b; }
         
         .controls button:disabled { 
@@ -237,7 +253,7 @@
             border: 2px solid #0a330e;
         }
 
-        /* KEYFRAMES ANIMASI KARTUN */
+        /* ANIMASI */
         @keyframes popIn {
             0% { transform: scale(0.9); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
@@ -447,7 +463,7 @@
         document.getElementById("btn-start").disabled = true;
         document.getElementById("btn-pause").disabled = false;
 
-        music.play().catch(e => console.log("Audio aktif"));
+        music.play().catch(e => console.log("Izin audio aktif"));
         document.getElementById("music-status").innerText = "Looping 🎵";
 
         timerInterval = setInterval(() => {
