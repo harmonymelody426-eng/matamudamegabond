@@ -262,6 +262,90 @@
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-8px) rotate(1deg); }
         }
+        /* --- POP-UP MODAL VIDEO SYSTEM --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 999; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(8px);
+            justify-content: center; 
+            align-items: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #fffdf0 0%, #fff9d6 100%);
+            padding: 30px;
+            border-radius: 35px;
+            border: 6px solid #0a330e;
+            width: 90%;
+            max-width: 750px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 15px 0px #0a330e;
+            text-align: center;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #d32f2f;
+            cursor: pointer;
+        }
+
+        .video-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .video-wrapper {
+            text-align: left;
+        }
+
+        .video-wrapper h4 {
+            font-family: 'Fredoka', sans-serif;
+            color: #1b5e20;
+            margin: 0 0 8px 0;
+        }
+
+        .video-box {
+            width: 100%;
+            height: 250px;
+            border-radius: 20px;
+            border: 4px solid #0a330e;
+        }
+
+        /* Tombol Pemicu di Kartu Informasi */
+        .btn-video-trigger {
+            background: linear-gradient(to bottom, #ff6f00, #e65100);
+            color: white;
+            border: 3px solid #0a330e;
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 0 4px 0px #0a330e;
+            margin-top: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-video-trigger:active {
+            transform: translateY(4px);
+            box-shadow: 0 0px 0px #0a330e;
+        }
     </style>
 </head>
 <body>
@@ -284,6 +368,7 @@
                 <span id="act-time" class="activity-time">Waktu: --:--</span>
                 <div id="act-title" class="activity-title">Memuat...</div>
                 <p id="act-detail" class="activity-detail">Materi...</p>
+                <div id="video-button-container"></div>
             </div>
 
             <div>
@@ -495,10 +580,54 @@
         isRunning = false;
         currentIndex++;
         loadActivity(currentIndex);
+        const videoBtnContainer = document.getElementById("video-button-container");
+if (index === 1) { 
+    // Muncul hanya di sesi ke-2 (Pembukaan & Ice Breaking)
+    videoBtnContainer.innerHTML = `
+        <button class="btn-video-trigger" onclick="openVideoModal()">
+            🎬 Putar Video Indonesia Raya & Mars
+        </button>
+    `;
+} else {
+    videoBtnContainer.innerHTML = "";
+}
     }
 
     loadActivity(currentIndex);
-</script>
+    function openVideoModal() {
+    if (isRunning) {
+        pauseTimer();
+    }
+    // Ganti ID video di bawah ini dengan ID Youtube asli yang kamu inginkan
+    document.getElementById("playerIndonesia").src = "https://www.youtube.com/embed/tpbqT1Z5-yE"; 
+    document.getElementById("playerMars").src = "https://www.youtube.com/embed/L46eD6w7m2A"; 
 
+    document.getElementById("videoModal").style.display = "flex";
+}
+
+function closeVideoModal() {
+    document.getElementById("videoModal").style.display = "none";
+    document.getElementById("playerIndonesia").src = "";
+    document.getElementById("playerMars").src = "";
+}
+</script>
+<div id="videoModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeVideoModal()">&times;</span>
+        <h3 style="font-family: 'Fredoka', sans-serif; color: #1b5e20; margin: 0 0 15px 0; font-size: 24px;">📺 Media Lagu Wajib</h3>
+
+        <div class="video-flex">
+            <div class="video-wrapper">
+                <h4>1. Lagu Indonesia Raya 3 Stanza</h4>
+                <iframe id="playerIndonesia" class="video-box" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <div class="video-wrapper">
+                <h4>2. Mars Madrasah</h4>
+                <iframe id="playerMars" class="video-box" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
