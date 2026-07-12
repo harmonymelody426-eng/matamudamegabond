@@ -6,61 +6,35 @@
     <title>Panduan & Timer MATAMUDA - Senin (Desktop Premium)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- HUBUNGAN KE LINGKUNGAN ANTAR MUKA MAJALAH BINTANG ANAK --- */
         * { box-sizing: border-box; }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: radial-gradient(circle at center, #1b3d22 0%, #081c0e 100%);
+            /* Menggunakan Backdrop Utama yang Anda berikan */
+            background: url('https://lh3.googleusercontent.com/d/1DWgcohqNfViclL0SIQIIo2QmTyBhKyEX') no-repeat center center fixed;
+            background-size: cover;
             color: #2c3e50;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
-            position: relative;
         }
 
-        /* Dekorasi Bintang Malam Berkedip */
-        body::before {
-            content: '★'; position: absolute; top: 12%; left: 8%; color: #ffd700; font-size: 26px; opacity: 0.8; animation: blink 2s infinite ease-in-out;
-        }
-        body::after {
-            content: '✦'; position: absolute; bottom: 15%; right: 8%; color: #fff; font-size: 30px; opacity: 0.6; animation: blink 3s infinite ease-in-out 1s;
-        }
-
-        /* --- CONTAINER UTAMA: GAYA MAJALAH PREMIUM --- */
+        /* Ditempatkan pas di area ruang kosong putih backdrop */
         .container {
-            width: 95%;
+            width: 94%;
             max-width: 1250px;
-            background: #fffdf6; 
-            padding: 35px;
-            border-radius: 40px;
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
-            border: 8px solid #ffd700;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Pita Edisi Cetak Atas */
-        .magazine-badge {
-            position: absolute;
-            top: 0;
-            right: 50px;
-            background: #ef6c00;
-            color: #fff;
-            padding: 8px 20px;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 12px;
-            font-weight: bold;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.97);
+            padding: 40px;
+            border-radius: 32px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            border-top: 12px solid #2e7d32;
+            backdrop-filter: blur(10px);
         }
 
         header {
@@ -69,17 +43,14 @@
         }
         h1 { 
             font-family: 'Fredoka', sans-serif;
-            font-weight: 700;
             color: #1b5e20; 
             margin: 0 0 4px 0; 
-            font-size: 40px;
-            text-transform: uppercase;
-            text-shadow: 3px 3px 0px #ffd700;
+            font-size: 38px;
         }
         h2 { 
             font-size: 14px; 
             color: #66bb6a; 
-            font-weight: 800;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin: 0;
@@ -87,29 +58,21 @@
 
         .desktop-grid {
             display: flex;
-            gap: 40px;
-            align-items: stretch;
+            gap: 50px;
+            align-items: center;
             justify-content: center;
+            min-height: 420px;
         }
 
-        /* --- STUNNING POSTER STYLE UNTUK FOTO PENYAJI --- */
+        /* --- TAMPILAN FOTO PEMATERI SETENGAH BADAN & TRANSPARAN BAWAH --- */
         .speakers-column {
             flex: 1.3;
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            gap: 20px;
-            background: linear-gradient(135deg, #a4db9b 0%, #2e7d32 100%);
-            border-radius: 30px;
-            padding: 30px 20px 20px 20px;
+            gap: 25px;
+            height: 400px;
             position: relative;
-            box-shadow: 0 15px 35px rgba(46, 125, 50, 0.3);
-            border: 4px solid #1b5e20;
-            min-height: 420px;
-        }
-
-        .speakers-column::before {
-            content: '✨'; position: absolute; top: 15px; left: 20px; font-size: 24px;
         }
 
         .speaker-wrapper {
@@ -117,37 +80,34 @@
             flex-direction: column;
             align-items: center;
             position: relative;
-            animation: float 4s ease-in-out infinite;
-            width: 100%;
+            animation: slideUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         .speaker-photo {
-            width: 100%;
-            max-width: 200px;
+            width: 200px;
             height: 300px;
-            object-fit: contain; 
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
-            filter: drop-shadow(5px 5px 0px #1b5e20);
+            object-fit: contain; /* Agar potongan badan asli tidak terpotong aneh */
+            /* Efek Masking pudar transparan di bagian bawah baju */
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.12));
         }
 
         .speaker-name {
-            margin-top: -10px;
-            font-family: 'Fredoka', sans-serif;
+            margin-top: 15px;
             font-size: 14px;
-            font-weight: 700;
+            font-weight: 800;
             color: #1b5e20;
-            background: #ffd700;
-            padding: 10px 18px;
-            border-radius: 20px;
+            background: #e8f5e9;
+            padding: 8px 16px;
+            border-radius: 14px;
             text-align: center;
-            box-shadow: 4px 4px 0px #1b5e20;
-            border: 3px solid #1b5e20;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border: 1px solid #c8e6c9;
             white-space: nowrap;
-            z-index: 2;
         }
 
-        /* --- INFO AREA KANAN --- */
+        /* --- AREA KANAN: MATERI & TIMER --- */
         .info-column {
             flex: 1;
             display: flex;
@@ -155,21 +115,19 @@
             justify-content: space-between;
             background: #ffffff;
             padding: 35px;
-            border-radius: 30px;
-            border: 4px solid #1b5e20;
-            box-shadow: 6px 6px 0px #1b5e20;
-            position: relative;
+            border-radius: 24px;
+            border: 1px solid #e8f5e9;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            height: 400px;
         }
 
-        .activity-card { text-align: left; animation: fadeIn 0.5s ease-out; }
-        
+        .activity-card { text-align: left; }
         .activity-title { 
             font-family: 'Fredoka', sans-serif;
-            font-size: 28px; 
+            font-size: 26px; 
             color: #2e7d32; 
             margin-bottom: 10px;
             line-height: 1.2;
-            font-weight: 700;
         }
         .activity-time { 
             font-size: 14px; 
@@ -177,47 +135,43 @@
             font-weight: 700; 
             display: inline-block;
             background: #fff3e0;
-            padding: 6px 16px;
+            padding: 4px 14px;
             border-radius: 20px;
             margin-bottom: 15px;
-            border: 2px solid #ef6c00;
         }
         .activity-detail { 
-            font-size: 16px; 
+            font-size: 15px; 
             line-height: 1.6;
             color: #455a64;
             margin: 0;
         }
 
-        /* --- TIMER SECTION & BUTTON CONTROLS --- */
         .timer-section {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-top: 15px;
             padding-top: 15px;
-            border-top: 4px dashed #ffd700;
+            border-top: 1px dashed #e0e0e0;
         }
         .timer-display {
-            font-size: 64px;
-            font-weight: 700;
+            font-size: 68px;
+            font-weight: 800;
             color: #c62828;
-            font-family: 'Fredoka', sans-serif;
+            font-family: monospace;
             background: #ffebee;
             padding: 2px 25px;
-            border-radius: 20px;
-            border: 3px solid #c62828;
-            box-shadow: 4px 4px 0px #c62828;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(198, 40, 40, 0.1);
         }
         .music-control {
             background: #e1f5fe;
-            border: 2px solid #1b5e20;
+            border: 1px solid #b3e5fc;
             padding: 8px 16px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 700;
             color: #0288d1;
-            box-shadow: 2px 2px 0px #1b5e20;
         }
 
         .controls {
@@ -230,51 +184,35 @@
             padding: 15px 20px;
             font-size: 14px;
             font-weight: 700;
-            font-family: 'Fredoka', sans-serif;
-            border: 3px solid #1b5e20;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            border: none;
             border-radius: 14px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        .btn-start { background-color: #2e7d32; color: white; box-shadow: 3px 3px 0px #1b5e20; }
-        .btn-start:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 5px 5px 0px #1b5e20; }
-        
-        .btn-pause { background-color: #ffa000; color: white; box-shadow: 3px 3px 0px #1b5e20; }
-        .btn-pause:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 5px 5px 0px #1b5e20; }
-        
-        .btn-next { background-color: #0288d1; color: white; box-shadow: 3px 3px 0px #1b5e20; }
-        .btn-next:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 5px 5px 0px #1b5e20; }
+        .btn-start { background-color: #2e7d32; color: white; }
+        .btn-start:hover { background-color: #1b5e20; transform: translateY(-2px); }
+        .btn-pause { background-color: #ffa000; color: white; }
+        .btn-pause:hover { background-color: #f57c00; transform: translateY(-2px); }
+        .btn-next { background-color: #0288d1; color: white; }
+        .btn-next:hover { background-color: #01579b; transform: translateY(-2px); }
         
         .controls button:disabled { 
             background-color: #cfd8dc !important; 
             color: #90a4ae !important;
-            border-color: #90a4ae !important;
-            box-shadow: none !important;
             cursor: not-allowed; 
             transform: none !important;
         }
 
         .status-footer { display: flex; justify-content: center; margin-top: 20px; }
         .progress-badge {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 12px; color: #fff; font-weight: 700;
-            background: #1b5e20; padding: 6px 16px; border-radius: 30px;
-            box-shadow: 3px 3px 0px #ffd700;
+            font-size: 12px; color: #78909c; font-weight: 700;
+            background: #eceff1; padding: 6px 16px; border-radius: 30px;
         }
 
-        /* --- ANIMASI KEYFRAMES GERAK --- */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 0.3; transform: scale(0.9); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -285,8 +223,6 @@
 </audio>
 
 <div class="container">
-    <div class="magazine-badge">EDISI CETAK ANAK</div>
-
     <header>
         <h1>📌 PANDUAN AKTIVITAS MATAMUDA</h1>
         <h2>MIN 3 BONDOWOSO - HARI SENIN (HARI KE-1)</h2>
@@ -296,7 +232,7 @@
         <div class="speakers-column" id="speakers-container"></div>
 
         <div class="info-column">
-            <div class="activity-card" id="activity-card-element">
+            <div class="activity-card">
                 <span id="act-time" class="activity-time">Waktu: --:--</span>
                 <div id="act-title" class="activity-title">Memuat...</div>
                 <p id="act-detail" class="activity-detail">Materi...</p>
@@ -323,6 +259,7 @@
 </div>
 
 <script>
+    // FIX DATA & ID DRIVE: Pemetaan Akurat ID Foto Anda Agar Tidak Saling Tertukar
     const idPhotos = {
         abdurrahman: "18OK2aJd-rJqoMr9TjOgZzhv5lkysJ55w",
         rofiq: "1-UnhtkKqrjxvWh7muXhG-AFJ5DqV7TjT",
@@ -333,10 +270,12 @@
         irmaNur: "18bqrkUSWN3kU9hrnttnEe4TcBMAZCKd0"
     };
 
+    // Fungsi konversi otomatis link agar background gambar transparan bawaan file terbaca sempurna
     function getDirectLink(id) {
-        return `http://googleusercontent.com/profile/picture/3{id}`;
+        return `https://lh3.googleusercontent.com/d/${id}`;
     }
 
+    // Koreksi data pembagian jadwal harian & pencocokan nama
     const jadwalSenin = [
         {
             waktu: "06.30 - 07.15 WIB",
@@ -399,4 +338,121 @@
     let currentIndex = 0;
     let timeLeft = 0;
     let timerInterval = null;
-    let isRunning
+    let isRunning = false;
+    const music = document.getElementById("bg-music");
+
+    function playAlarmEffect() {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let osc = audioCtx.createOscillator();
+        let gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+        gain.gain.setValueAtTime(1, audioCtx.currentTime);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 2); 
+    }
+
+    function loadActivity(index) {
+        const container = document.getElementById("speakers-container");
+        container.innerHTML = ""; 
+
+        if (index >= jadwalSenin.length) {
+            document.getElementById("act-title").innerText = "🎉 Acara Hari Senin Selesai!";
+            document.getElementById("act-time").style.display = "none";
+            document.getElementById("act-detail").innerText = "Rangkaian acara hari pertama selesai dilaksanakan.";
+            document.getElementById("timer").innerText = "00:00";
+            document.getElementById("btn-start").disabled = true;
+            document.getElementById("btn-pause").disabled = true;
+            document.getElementById("btn-next").disabled = true;
+            music.pause();
+            document.getElementById("music-status").innerText = "Mati";
+            return;
+        }
+
+        const data = jadwalSenin[index];
+        document.getElementById("act-title").innerText = data.judul;
+        document.getElementById("act-time").style.display = "inline-block";
+        document.getElementById("act-time").innerText = "⏰ " + data.waktu;
+        document.getElementById("act-detail").innerText = data.detail;
+        document.getElementById("progress").innerText = `Aktivitas ${index + 1} dari ${jadwalSenin.length}`;
+        
+        data.petugas.forEach(p => {
+            const wrapper = document.createElement("div");
+            wrapper.className = "speaker-wrapper";
+            
+            const img = document.createElement("img");
+            img.className = "speaker-photo";
+            img.src = p.foto;
+            img.alt = p.nama;
+            
+            const nameTag = document.createElement("div");
+            nameTag.className = "speaker-name";
+            nameTag.innerText = p.nama;
+            
+            wrapper.appendChild(img);
+            wrapper.appendChild(nameTag);
+            container.appendChild(wrapper);
+        });
+
+        timeLeft = data.durasi;
+        updateTimerDisplay();
+        
+        document.getElementById("btn-start").disabled = false;
+        document.getElementById("btn-pause").disabled = true;
+    }
+
+    function updateTimerDisplay() {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        document.getElementById("timer").innerText = `${minutes}:${seconds}`;
+    }
+
+    function startTimer() {
+        if (isRunning) return;
+        isRunning = true;
+        document.getElementById("btn-start").disabled = true;
+        document.getElementById("btn-pause").disabled = false;
+
+        music.play().catch(e => console.log("Izin audio aktif"));
+        document.getElementById("music-status").innerText = "Looping 🎵";
+
+        timerInterval = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                updateTimerDisplay();
+            } else {
+                clearInterval(timerInterval);
+                isRunning = false;
+                music.pause();
+                document.getElementById("music-status").innerText = "Mati";
+                playAlarmEffect();
+                alert(`Sesi "${jadwalSenin[currentIndex].judul}" Selesai!`);
+            }
+        }, 1000);
+    }
+
+    function pauseTimer() {
+        clearInterval(timerInterval);
+        isRunning = false;
+        music.pause();
+        document.getElementById("music-status").innerText = "Dijeda ⏸️";
+        document.getElementById("btn-start").disabled = false;
+        document.getElementById("btn-pause").disabled = true;
+    }
+
+    function nextActivity() {
+        clearInterval(timerInterval);
+        isRunning = false;
+        currentIndex++;
+        loadActivity(currentIndex);
+    }
+
+    loadActivity(currentIndex);
+</script>
+
+</body>
+</html>
