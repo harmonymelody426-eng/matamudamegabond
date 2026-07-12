@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panduan & Timer MATAMUDA - Edisi Cetak Anak</title>
+    <title>Panduan & Timer MATAMUDA - Senin (Desktop Premium)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- RESET & BACKGROUND MAJALAH BINTANG --- */
+        /* --- HUBUNGAN KE LINGKUNGAN ANTAR MUKA MAJALAH BINTANG ANAK --- */
         * { box-sizing: border-box; }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: radial-gradient(circle at center, #2e1a47 0%, #110924 100%);
+            background: radial-gradient(circle at center, #1b3d22 0%, #081c0e 100%);
             color: #2c3e50;
             margin: 0;
             padding: 20px;
@@ -25,33 +25,33 @@
             position: relative;
         }
 
-        /* Background Dekorisasi Bintang Berkedip */
+        /* Dekorasi Bintang Malam Berkedip */
         body::before {
-            content: '★'; position: absolute; top: 15%; left: 10%; color: #ffd700; font-size: 24px; opacity: 0.7; animation: blink 2s infinite ease-in-out;
+            content: '★'; position: absolute; top: 12%; left: 8%; color: #ffd700; font-size: 26px; opacity: 0.8; animation: blink 2s infinite ease-in-out;
         }
         body::after {
-            content: '✦'; position: absolute; bottom: 15%; right: 10%; color: #fff; font-size: 32px; opacity: 0.5; animation: blink 3s infinite ease-in-out 1s;
+            content: '✦'; position: absolute; bottom: 15%; right: 8%; color: #fff; font-size: 30px; opacity: 0.6; animation: blink 3s infinite ease-in-out 1s;
         }
 
-        /* --- CONTAINER UTAMA: GAYA COVER MAJALAH --- */
+        /* --- CONTAINER UTAMA: GAYA MAJALAH PREMIUM --- */
         .container {
             width: 95%;
-            max-width: 1200px;
-            background: #fffdf6; /* Kertas majalah hangat */
+            max-width: 1250px;
+            background: #fffdf6; 
             padding: 35px;
             border-radius: 40px;
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(0,0,0,0.05);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
             border: 8px solid #ffd700;
             position: relative;
             overflow: hidden;
         }
 
-        /* Pita Edisi Majalah Atas */
+        /* Pita Edisi Cetak Atas */
         .magazine-badge {
             position: absolute;
             top: 0;
             right: 50px;
-            background: #ff4757;
+            background: #ef6c00;
             color: #fff;
             padding: 8px 20px;
             font-family: 'Fredoka', sans-serif;
@@ -65,29 +65,26 @@
 
         header {
             text-align: center;
-            margin-bottom: 30px;
-            position: relative;
+            margin-bottom: 25px;
         }
         h1 { 
             font-family: 'Fredoka', sans-serif;
             font-weight: 700;
-            color: #2e1a47; 
-            margin: 0; 
-            font-size: 42px;
+            color: #1b5e20; 
+            margin: 0 0 4px 0; 
+            font-size: 40px;
             text-transform: uppercase;
-            letter-spacing: -1px;
             text-shadow: 3px 3px 0px #ffd700;
         }
         h2 { 
-            font-size: 15px; 
-            color: #ff6b81; 
+            font-size: 14px; 
+            color: #66bb6a; 
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin: 5px 0 0 0;
+            letter-spacing: 2px;
+            margin: 0;
         }
 
-        /* --- LAYOUT GRID POSTER --- */
         .desktop-grid {
             display: flex;
             gap: 40px;
@@ -95,23 +92,22 @@
             justify-content: center;
         }
 
-        /* --- KOLOM KIRI: FOTO PENYAJII (STUNNING POSTER STYLE) --- */
+        /* --- STUNNING POSTER STYLE UNTUK FOTO PENYAJI --- */
         .speakers-column {
-            flex: 1.2;
+            flex: 1.3;
             display: flex;
             justify-content: center;
             align-items: flex-end;
             gap: 20px;
-            background: linear-gradient(135deg, #70a1ff 0%, #1e90ff 100%);
+            background: linear-gradient(135deg, #a4db9b 0%, #2e7d32 100%);
             border-radius: 30px;
             padding: 30px 20px 20px 20px;
             position: relative;
-            box-shadow: 0 15px 35px rgba(30, 144, 255, 0.3);
-            border: 4px solid #2e1a47;
+            box-shadow: 0 15px 35px rgba(46, 125, 50, 0.3);
+            border: 4px solid #1b5e20;
             min-height: 420px;
         }
 
-        /* Dekorasi Bintang di Dalam Poster Foto */
         .speakers-column::before {
             content: '✨'; position: absolute; top: 15px; left: 20px; font-size: 24px;
         }
@@ -127,169 +123,155 @@
 
         .speaker-photo {
             width: 100%;
-            max-width: 210px;
-            height: 290px;
-            object-fit: contain;
-            border-radius: 24px;
-            /* Masking pudar bawah agar menyatu lembut dengan nama */
+            max-width: 200px;
+            height: 300px;
+            object-fit: contain; 
             -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
-            filter: drop-shadow(5px 5px 0px #2e1a47);
-            transition: transform 0.3s ease;
+            filter: drop-shadow(5px 5px 0px #1b5e20);
         }
 
         .speaker-name {
             margin-top: -10px;
             font-family: 'Fredoka', sans-serif;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
-            color: #2e1a47;
+            color: #1b5e20;
             background: #ffd700;
             padding: 10px 18px;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 4px 4px 0px #2e1a47;
-            border: 3px solid #2e1a47;
+            box-shadow: 4px 4px 0px #1b5e20;
+            border: 3px solid #1b5e20;
             white-space: nowrap;
             z-index: 2;
         }
 
-        /* --- KOLOM KANAN: MATERI & TIMER INFORMATIF --- */
+        /* --- INFO AREA KANAN --- */
         .info-column {
-            flex: 1.1;
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             background: #ffffff;
-            padding: 30px;
+            padding: 35px;
             border-radius: 30px;
-            border: 4px solid #2e1a47;
-            box-shadow: 8px 8px 0px #2e1a47;
+            border: 4px solid #1b5e20;
+            box-shadow: 6px 6px 0px #1b5e20;
             position: relative;
         }
 
         .activity-card { text-align: left; animation: fadeIn 0.5s ease-out; }
         
-        .activity-time { 
-            font-family: 'Fredoka', sans-serif;
-            font-size: 15px; 
-            color: #fff; 
-            font-weight: 700; 
-            display: inline-block;
-            background: #ff4757;
-            padding: 6px 16px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            box-shadow: 3px 3px 0px #2e1a47;
-            border: 2px solid #2e1a47;
-        }
-        
         .activity-title { 
             font-family: 'Fredoka', sans-serif;
-            font-size: 30px; 
-            color: #2e1a47; 
-            margin-bottom: 12px;
-            line-height: 1.15;
+            font-size: 28px; 
+            color: #2e7d32; 
+            margin-bottom: 10px;
+            line-height: 1.2;
             font-weight: 700;
         }
-        
+        .activity-time { 
+            font-size: 14px; 
+            color: #ef6c00; 
+            font-weight: 700; 
+            display: inline-block;
+            background: #fff3e0;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            border: 2px solid #ef6c00;
+        }
         .activity-detail { 
             font-size: 16px; 
             line-height: 1.6;
-            color: #4f5d75;
+            color: #455a64;
             margin: 0;
-            font-weight: 600;
         }
 
-        /* --- TIMER & TOMBOL KONTROL INTERAKTIF --- */
+        /* --- TIMER SECTION & BUTTON CONTROLS --- */
         .timer-section {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 15px;
             padding-top: 15px;
             border-top: 4px dashed #ffd700;
         }
-        
         .timer-display {
-            font-size: 58px;
+            font-size: 64px;
             font-weight: 700;
-            color: #ff4757;
+            color: #c62828;
             font-family: 'Fredoka', sans-serif;
-            background: #fff0f2;
-            padding: 4px 20px;
+            background: #ffebee;
+            padding: 2px 25px;
             border-radius: 20px;
-            border: 3px solid #ff4757;
-            box-shadow: 4px 4px 0px #ff4757;
+            border: 3px solid #c62828;
+            box-shadow: 4px 4px 0px #c62828;
         }
-        
         .music-control {
-            background: #ffa502;
-            border: 2px solid #2e1a47;
-            padding: 8px 14px;
-            border-radius: 15px;
+            background: #e1f5fe;
+            border: 2px solid #1b5e20;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-size: 12px;
-            font-weight: 800;
-            color: #2e1a47;
-            box-shadow: 2px 2px 0px #2e1a47;
+            font-weight: 700;
+            color: #0288d1;
+            box-shadow: 2px 2px 0px #1b5e20;
         }
 
         .controls {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             margin-top: 20px;
         }
-        
         .controls button {
             flex: 1;
-            padding: 14px 10px;
+            padding: 15px 20px;
             font-size: 14px;
             font-weight: 700;
             font-family: 'Fredoka', sans-serif;
-            border: 3px solid #2e1a47;
-            border-radius: 16px;
+            border: 3px solid #1b5e20;
+            border-radius: 14px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
+        .btn-start { background-color: #2e7d32; color: white; box-shadow: 3px 3px 0px #1b5e20; }
+        .btn-start:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 5px 5px 0px #1b5e20; }
         
-        .btn-start { background-color: #2ed573; color: #2e1a47; box-shadow: 3px 3px 0px #2e1a47; }
-        .btn-start:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 5px 5px 0px #2e1a47; }
+        .btn-pause { background-color: #ffa000; color: white; box-shadow: 3px 3px 0px #1b5e20; }
+        .btn-pause:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 5px 5px 0px #1b5e20; }
         
-        .btn-pause { background-color: #ffb8b8; color: #2e1a47; box-shadow: 3px 3px 0px #2e1a47; }
-        .btn-pause:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 5px 5px 0px #2e1a47; }
-        
-        .btn-next { background-color: #70a1ff; color: #2e1a47; box-shadow: 3px 3px 0px #2e1a47; }
-        .btn-next:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 5px 5px 0px #2e1a47; }
+        .btn-next { background-color: #0288d1; color: white; box-shadow: 3px 3px 0px #1b5e20; }
+        .btn-next:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 5px 5px 0px #1b5e20; }
         
         .controls button:disabled { 
-            background-color: #dcdde1 !important; 
-            color: #a1a1a1 !important;
-            border-color: #a1a1a1 !important;
+            background-color: #cfd8dc !important; 
+            color: #90a4ae !important;
+            border-color: #90a4ae !important;
             box-shadow: none !important;
             cursor: not-allowed; 
             transform: none !important;
         }
 
-        .status-footer { display: flex; justify-content: center; margin-top: 25px; }
+        .status-footer { display: flex; justify-content: center; margin-top: 20px; }
         .progress-badge {
             font-family: 'Fredoka', sans-serif;
-            font-size: 13px; color: #fff; font-weight: 700;
-            background: #2e1a47; padding: 8px 20px; border-radius: 20px;
+            font-size: 12px; color: #fff; font-weight: 700;
+            background: #1b5e20; padding: 6px 16px; border-radius: 30px;
             box-shadow: 3px 3px 0px #ffd700;
         }
 
-        /* --- ANIMASI NYATA (CSS KEYFRAMES) --- */
+        /* --- ANIMASI KEYFRAMES GERAK --- */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
-
         @keyframes blink {
             0%, 100% { opacity: 0.3; transform: scale(0.9); }
             50% { opacity: 1; transform: scale(1.2); }
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
@@ -303,11 +285,11 @@
 </audio>
 
 <div class="container">
-    <div class="magazine-badge">EDISI HARI #1</div>
-    
+    <div class="magazine-badge">EDISI CETAK ANAK</div>
+
     <header>
-        <h1>🌟 PETUALANGAN MATAMUDA 🌟</h1>
-        <h2>MIN 3 BONDOWOSO • KELAS SERU HARI SENIN</h2>
+        <h1>📌 PANDUAN AKTIVITAS MATAMUDA</h1>
+        <h2>MIN 3 BONDOWOSO - HARI SENIN (HARI KE-1)</h2>
     </header>
 
     <div class="desktop-grid">
@@ -327,21 +309,20 @@
                 </div>
 
                 <div class="controls">
-                    <button class="btn-start" id="btn-start" onclick="startTimer()">MULAI ▶</button>
-                    <button class="btn-pause" id="btn-pause" onclick="pauseTimer()" disabled>JEDA ⏸</button>
-                    <button class="btn-next" id="btn-next" onclick="nextActivity()">LANJUT ⏭</button>
+                    <button class="btn-start" id="btn-start" onclick="startTimer()">MULAI</button>
+                    <button class="btn-pause" id="btn-pause" onclick="pauseTimer()" disabled>PAUSE</button>
+                    <button class="btn-next" id="btn-next" onclick="nextActivity()">LANJUT KLIK</button>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="status-footer">
-        <div class="progress-badge" id="progress">Misi 1 dari 6</div>
+        <div class="progress-badge" id="progress">Aktivitas 1 dari 6</div>
     </div>
 </div>
 
 <script>
-    // DATA ID DRIVE YANG SUDAH ANDA ATUR SEBELUMNYA
     const idPhotos = {
         abdurrahman: "18OK2aJd-rJqoMr9TjOgZzhv5lkysJ55w",
         rofiq: "1-UnhtkKqrjxvWh7muXhG-AFJ5DqV7TjT",
@@ -353,14 +334,14 @@
     };
 
     function getDirectLink(id) {
-        return `https://lh3.googleusercontent.com/d/$${id}`;
+        return `http://googleusercontent.com/profile/picture/3{id}`;
     }
 
     const jadwalSenin = [
         {
             waktu: "06.30 - 07.15 WIB",
-            judul: "Pembiasaan Pagi & Sholat Berjamaah 🕌",
-            detail: "Ayo awali pagi ceria dengan Muroja'ah bersama teman-teman lalu Sholat Dhuha khusyuk di masjid!",
+            judul: "Pembiasaan Pagi & Ritual Pembuka Wajib",
+            detail: "Muroja'ah Surat Pendek dan Sholat Dhuha Berjamaah bersama murid.",
             petugas: [
                 { nama: "Ustd. Abdurrahman", foto: getDirectLink(idPhotos.abdurrahman) },
                 { nama: "Ustd. Rofiq", foto: getDirectLink(idPhotos.rofiq) }
@@ -369,8 +350,8 @@
         },
         {
             waktu: "07.15 - 08.00 WIB",
-            judul: "Upacara Buka & Main Game Seru 🎯",
-            detail: "Menyanyikan lagu kebangsaan penuh semangat, lalu kita seru-seruan lewat permainan Lempar Bola Nama!",
+            judul: "Pembukaan & Ice Breaking",
+            detail: "Menyanyikan Lagu Indonesia Raya & Mars Madrasah, Sambutan Kepala Madrasah, dilanjutkan permainan Edukatif Lempar Bola Nama.",
             petugas: [
                 { nama: "Ustdz. Siti Lailatul F.", foto: getDirectLink(idPhotos.sitiLailatul) },
                 { nama: "Ustdz. Kusuma Wardani", foto: getDirectLink(idPhotos.kusumaWardani) }
@@ -379,8 +360,8 @@
         },
         {
             waktu: "08.00 - 08.30 WIB",
-            judul: "Berburu Bintang Rising Stars 🏆",
-            detail: "Mau dapat banyak hadiah? Kumpulkan Point Bintang Harianmu sekarang lewat tantangan seru ini!",
+            judul: "Matamuda Rising Stars Quiz & Reward",
+            detail: "Sosialisasi Aplikasi dan Regulasi Bintang Harian Matamuda Rising Stars.",
             petugas: [
                 { nama: "Ustd. Sulaiman Wahyu", foto: getDirectLink(idPhotos.sulaimanWahyu) }
             ],
@@ -388,8 +369,8 @@
         },
         {
             waktu: "08.30 - 09.00 WIB",
-            judul: "Waktunya Istirahat & Snack Sehat 🍌",
-            detail: "Saatnya makan bekal sehatmu! Jangan lupa cuci tangan dulu dan pakai adab makan yang diajarkan Rasulullah ya.",
+            judul: "Istirahat Ringan / Snack Time",
+            detail: "Murid menikmati snack sehat bersama dibimbing adab makan yang benar.",
             petugas: [
                 { nama: "Ustdz. Baratut", foto: getDirectLink(idPhotos.baratut) }
             ],
@@ -397,8 +378,8 @@
         },
         {
             waktu: "09.00 - 09.45 WIB",
-            judul: "Eksplorasi Seru: Amazing Race! 🗺️",
-            detail: "Ayo jelajahi setiap sudut madrasah hebat kita! Temukan ruangan rahasia bersama kelompokmu.",
+            judul: "Eksplorasi Lingkungan: Amazing Race",
+            detail: "Berkeliling area madrasah (kelas, perpus, UKS dll) secara berkelompok.",
             petugas: [
                 { nama: "Ustdz. Irma Nur Waqiah", foto: getDirectLink(idPhotos.irmaNur) }
             ],
@@ -406,8 +387,8 @@
         },
         {
             waktu: "09.45 - 10.30 WIB",
-            judul: "Bintang Hari Ini & Doa Penutup 🌈",
-            detail: "Siapa yang jadi juara hari ini? Mari lakukan tepuk panca cinta, berdoa bersama, lalu pulang dengan senyuman!",
+            judul: "Ritual Penutup & Apresiasi",
+            detail: "Refleksi harian 'Bintang Hari Ini', Tepuk Panca Cinta, Berdoa dan Pulang.",
             petugas: [
                 { nama: "Ustd. Sulaiman Wahyu", foto: getDirectLink(idPhotos.sulaimanWahyu) }
             ],
@@ -418,130 +399,4 @@
     let currentIndex = 0;
     let timeLeft = 0;
     let timerInterval = null;
-    let isRunning = false;
-    const music = document.getElementById("bg-music");
-
-    function playAlarmEffect() {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        let osc = audioCtx.createOscillator();
-        let gain = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(880, audioCtx.currentTime);
-        gain.gain.setValueAtTime(1, audioCtx.currentTime);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 1.5); 
-    }
-
-    function loadActivity(index) {
-        const container = document.getElementById("speakers-container");
-        const card = document.getElementById("activity-card-element");
-        
-        container.innerHTML = ""; 
-
-        // Efek animasi hentakan saat materi berganti
-        card.style.animation = 'none';
-        card.offsetHeight; 
-        card.style.animation = 'fadeIn 0.5s ease-out';
-
-        if (index >= jadwalSenin.length) {
-            document.getElementById("act-title").innerText = "🎉 Hore! Petualangan Hari Ini Selesai!";
-            document.getElementById("act-time").style.display = "none";
-            document.getElementById("act-detail").innerText = "Kalian luar biasa! Sampai jumpa besok di petualangan berikutnya.";
-            document.getElementById("timer").innerText = "00:00";
-            document.getElementById("btn-start").disabled = true;
-            document.getElementById("btn-pause").disabled = true;
-            document.getElementById("btn-next").disabled = true;
-            music.pause();
-            document.getElementById("music-status").innerText = "Mati";
-            return;
-        }
-
-        const data = jadwalSenin[index];
-        document.getElementById("act-title").innerText = data.judul;
-        document.getElementById("act-time").style.display = "inline-block";
-        document.getElementById("act-time").innerText = "⏰ " + data.waktu;
-        document.getElementById("act-detail").innerText = data.detail;
-        document.getElementById("progress").innerText = `Misi ${index + 1} dari ${jadwalSenin.length}`;
-        
-        data.petugas.forEach((p, i) => {
-            const wrapper = document.createElement("div");
-            wrapper.className = "speaker-wrapper";
-            // Memberikan jeda delay animasi antar karakter agar terlihat natural bergantian
-            wrapper.style.animationDelay = `${i * 0.5}s`;
-            
-            const img = document.createElement("img");
-            img.className = "speaker-photo";
-            img.src = p.foto;
-            img.alt = p.nama;
-            
-            const nameTag = document.createElement("div");
-            nameTag.className = "speaker-name";
-            nameTag.innerText = p.nama;
-            
-            wrapper.appendChild(img);
-            wrapper.appendChild(nameTag);
-            container.appendChild(wrapper);
-        });
-
-        timeLeft = data.durasi;
-        updateTimerDisplay();
-        
-        document.getElementById("btn-start").disabled = false;
-        document.getElementById("btn-pause").disabled = true;
-    }
-
-    function updateTimerDisplay() {
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        document.getElementById("timer").innerText = `${minutes}:${seconds}`;
-    }
-
-    function startTimer() {
-        if (isRunning) return;
-        isRunning = true;
-        document.getElementById("btn-start").disabled = true;
-        document.getElementById("btn-pause").disabled = false;
-
-        music.play().catch(e => console.log("Musik berjalan aktif"));
-        document.getElementById("music-status").innerText = "Mainkan 🎵";
-
-        timerInterval = setInterval(() => {
-            if (timeLeft > 0) {
-                timeLeft--;
-                updateTimerDisplay();
-            } else {
-                clearInterval(timerInterval);
-                isRunning = false;
-                music.pause();
-                document.getElementById("music-status").innerText = "Mati";
-                playAlarmEffect();
-                alert(`Yey! Misi "${jadwalSenin[currentIndex].judul}" Selesai!`);
-            }
-        }, 1000);
-    }
-
-    function pauseTimer() {
-        clearInterval(timerInterval);
-        isRunning = false;
-        music.pause();
-        document.getElementById("music-status").innerText = "Jeda ⏸️";
-        document.getElementById("btn-start").disabled = false;
-        document.getElementById("btn-pause").disabled = true;
-    }
-
-    function nextActivity() {
-        clearInterval(timerInterval);
-        isRunning = false;
-        currentIndex++;
-        loadActivity(currentIndex);
-    }
-
-    loadActivity(currentIndex);
-</script>
-
-</body>
-</html>
+    let isRunning
