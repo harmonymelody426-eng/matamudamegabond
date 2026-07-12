@@ -24,7 +24,7 @@
             overflow: hidden;
         }
 
-        /* --- CONTAINER UTAMA --- */
+        /* --- CONTAINER UTAMA: PAPAN MENU GAME 4D --- */
         .container {
             width: 92%;
             max-width: 1200px;
@@ -32,118 +32,266 @@
             padding: 40px;
             border-radius: 45px;
             border: 8px solid #1b5e20;
-            box-shadow: 0 18px 0px #0a330e, 0 30px 50px rgba(0, 0, 0, 0.35);
+            box-shadow: 
+                0 18px 0px #0a330e, 
+                0 30px 50px rgba(0, 0, 0, 0.35);
             position: relative;
             animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        header { text-align: center; margin-bottom: 30px; }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
         h1 { 
-            font-family: 'Fredoka', sans-serif; color: #1b5e20; margin: 0 0 6px 0; font-size: 38px; font-weight: 700;
+            font-family: 'Fredoka', sans-serif;
+            color: #1b5e20; 
+            margin: 0 0 6px 0; 
+            font-size: 38px;
+            font-weight: 700;
             text-shadow: 3px 3px 0px #ffd700, 6px 6px 0px #0a330e;
         }
         h2 { 
-            font-family: 'Fredoka', sans-serif; font-size: 14px; color: #ff6f00; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 2px; margin: 0; text-shadow: 1px 1px 0px #fff;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 14px; 
+            color: #ff6f00; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            text-shadow: 1px 1px 0px #fff;
         }
 
-        .desktop-grid { display: flex; gap: 40px; align-items: center; justify-content: center; min-height: 410px; }
+        .desktop-grid {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+            min-height: 410px;
+        }
 
-        /* --- BINGKAI FOTO PEMATERI --- */
+        /* --- BINGKAI FOTO PEMATERI KARTUN POP-ART --- */
         .speakers-column {
-            flex: 1.2; display: flex; justify-content: center; align-items: flex-end; gap: 20px; height: 390px;
-            position: relative; background: linear-gradient(135deg, #a4db9b 0%, #1b5e20 100%);
-            border-radius: 32px; padding: 20px; border: 6px solid #0a330e;
+            flex: 1.2;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 20px;
+            height: 390px;
+            position: relative;
+            background: linear-gradient(135deg, #a4db9b 0%, #1b5e20 100%);
+            border-radius: 32px;
+            padding: 20px;
+            border: 6px solid #0a330e;
             box-shadow: inset 0 10px 0px rgba(0,0,0,0.15), 0 8px 0px rgba(0,0,0,0.1);
         }
-        .speaker-wrapper { display: flex; flex-direction: column; align-items: center; position: relative; animation: floatCartoon 4s ease-in-out infinite; }
+
+        .speaker-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            animation: floatCartoon 4s ease-in-out infinite;
+        }
+
         .speaker-photo {
-            width: 180px; height: 280px; object-fit: contain; 
+            width: 180px;
+            height: 280px;
+            object-fit: contain; 
             -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 100%);
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 82%, rgba(0,0,0,0) 100%);
             filter: drop-shadow(5px 5px 0px #0a330e);
         }
+
         .speaker-name {
-            margin-top: -10px; font-family: 'Fredoka', sans-serif; font-size: 13px; font-weight: 700; color: #1b5e20;
-            background: #ffd700; padding: 8px 16px; border-radius: 18px; text-align: center; border: 3px solid #0a330e;
-            box-shadow: 0 5px 0px #c5a000; white-space: nowrap; z-index: 5;
+            margin-top: -10px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #1b5e20;
+            background: #ffd700;
+            padding: 8px 16px;
+            border-radius: 18px;
+            text-align: center;
+            border: 3px solid #0a330e;
+            box-shadow: 0 5px 0px #c5a000;
+            white-space: nowrap;
+            z-index: 5;
         }
 
         /* --- KARTU MATERI SEBELAH KANAN --- */
         .info-column {
-            flex: 1; display: flex; flex-direction: column; justify-content: space-between;
-            background: #ffffff; padding: 30px; border-radius: 32px; border: 5px solid #0a330e;
-            box-shadow: 0 8px 0px rgba(0,0,0,0.1); height: 390px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 32px;
+            border: 5px solid #0a330e;
+            box-shadow: 0 8px 0px rgba(0,0,0,0.1);
+            height: 390px;
         }
-        .activity-card { text-align: left; }
-        .activity-title { font-family: 'Fredoka', sans-serif; font-size: 24px; color: #1b5e20; margin-bottom: 12px; line-height: 1.3; }
-        .activity-time { 
-            font-family: 'Fredoka', sans-serif; font-size: 13px; color: #ffffff; font-weight: 700; 
-            display: inline-block; background: #ff6f00; padding: 6px 16px; border-radius: 20px;
-            margin-bottom: 15px; border: 3px solid #0a330e; box-shadow: 0 4px 0px #b55200;
-        }
-        .activity-detail { font-size: 15px; line-height: 1.6; color: #37474f; font-weight: 600; }
 
-        /* --- TIMER AREA --- */
-        .timer-section { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; padding-top: 15px; border-top: 4px dashed #ffd700; }
-        .timer-display {
-            font-size: 58px; font-weight: 700; color: #ffffff; font-family: 'Fredoka', monospace; background: #d32f2f;
-            padding: 2px 25px; border-radius: 22px; border: 4px solid #7f100f; box-shadow: 0 6px 0px #500505, 0 10px 15px rgba(0,0,0,0.15);
+        /* Khusus kartu materi agar isinya bisa di-scroll tipis jika video muncul */
+        .activity-card { 
+            text-align: left; 
+            overflow-y: auto;
+            flex: 1;
+            padding-right: 5px;
+            margin-bottom: 10px;
         }
-        .music-control { background: #e1f5fe; border: 3px solid #0288d1; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; color: #0288d1; box-shadow: 0 4px 0px #01579b; }
-
-        /* --- CONTROL BUTTONS --- */
-        .controls { display: flex; gap: 12px; margin-top: 18px; }
-        .controls button {
-            flex: 1; padding: 14px 18px; font-size: 14px; font-weight: 700; font-family: 'Fredoka', sans-serif;
-            border: 4px solid #0a330e; border-radius: 20px; cursor: pointer;
-        }
-        .btn-start { background: linear-gradient(to bottom, #4caf50, #2e7d32); color: white; box-shadow: 0 6px 0px #0c3a10; }
-        .btn-start:active { transform: translateY(6px); box-shadow: 0 0px 0px #0c3a10; }
-        .btn-pause { background: linear-gradient(to bottom, #ffb300, #ff8f00); color: white; box-shadow: 0 6px 0px #b56500; }
-        .btn-pause:active { transform: translateY(6px); box-shadow: 0 0px 0px #b56500; }
-        .btn-next { background: linear-gradient(to bottom, #29b6f6, #0288d1); color: white; box-shadow: 0 6px 0px #01579b; }
-        .btn-next:active { transform: translateY(6px); box-shadow: 0 0px 0px #01579b; }
         
-        .controls button:disabled { background: #cfd8dc !important; color: #90a4ae !important; border-color: #b0bec5 !important; box-shadow: 0 2px 0px #90a4ae !important; cursor: not-allowed; transform: none !important; }
+        /* Desain scrollbar internal kartu biar lucu */
+        .activity-card::-webkit-scrollbar { width: 6px; }
+        .activity-card::-webkit-scrollbar-thumb { background-color: #1b5e20; border-radius: 10px; }
+
+        .activity-title { 
+            font-family: 'Fredoka', sans-serif;
+            font-size: 24px; 
+            color: #1b5e20; 
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        .activity-time { 
+            font-family: 'Fredoka', sans-serif;
+            font-size: 13px; 
+            color: #ffffff; 
+            font-weight: 700; 
+            display: inline-block;
+            background: #ff6f00;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            border: 3px solid #0a330e;
+            box-shadow: 0 4px 0px #b55200;
+        }
+        .activity-detail { 
+            font-size: 15px; 
+            line-height: 1.6;
+            color: #37474f;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* --- TIMER --- */
+        .timer-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 5px;
+            padding-top: 10px;
+            border-top: 4px dashed #ffd700;
+        }
+        .timer-display {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ffffff;
+            font-family: 'Fredoka', monospace;
+            background: #d32f2f;
+            padding: 2px 20px;
+            border-radius: 22px;
+            border: 4px solid #7f100f;
+            box-shadow: 0 6px 0px #500505, 0 10px 15px rgba(0,0,0,0.15);
+        }
+        .music-control {
+            background: #e1f5fe;
+            border: 3px solid #0288d1;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #0288d1;
+            box-shadow: 0 4px 0px #01579b;
+        }
+
+        /* --- TOMBOL JELLY 3D CONTROLS --- */
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .controls button {
+            flex: 1;
+            padding: 12px 14px;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'Fredoka', sans-serif;
+            border: 4px solid #0a330e;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+        
+        .btn-start { background: linear-gradient(to bottom, #4caf50, #2e7d32); color: white; box-shadow: 0 5px 0px #0c3a10; }
+        .btn-start:active { transform: translateY(5px); box-shadow: 0 0px 0px #0c3a10; }
+
+        .btn-pause { background: linear-gradient(to bottom, #ffb300, #ff8f00); color: white; box-shadow: 0 5px 0px #b56500; }
+        .btn-pause:active { transform: translateY(5px); box-shadow: 0 0px 0px #b56500; }
+
+        .btn-next { background: linear-gradient(to bottom, #29b6f6, #0288d1); color: white; box-shadow: 0 5px 0px #01579b; }
+        .btn-next:active { transform: translateY(5px); box-shadow: 0 0px 0px #01579b; }
+        
+        .controls button:disabled { 
+            background: #cfd8dc !important; 
+            color: #90a4ae !important;
+            border-color: #b0bec5 !important;
+            box-shadow: 0 2px 0px #90a4ae !important;
+            cursor: not-allowed;
+            transform: none !important;
+        }
 
         .status-footer { display: flex; justify-content: center; margin-top: 20px; }
-        .progress-badge { font-family: 'Fredoka', sans-serif; font-size: 12px; color: #fff; font-weight: 700; background: #1b5e20; padding: 6px 20px; border-radius: 30px; box-shadow: 0 4px 0px #ffd700; border: 2px solid #0a330e; }
-
-        /* --- POP-UP MODAL VIDEO SYSTEM (PERBAIKAN TOTAL LAYOUT FLEX) --- */
-        .modal {
-            display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; 
-            background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px); justify-content: center; align-items: center;
+        .progress-badge {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 12px; color: #fff; font-weight: 700;
+            background: #1b5e20; padding: 6px 20px; border-radius: 30px;
+            box-shadow: 0 4px 0px #ffd700;
+            border: 2px solid #0a330e;
         }
-        .modal-content {
-            background: linear-gradient(135deg, #fffdf0 0%, #fff9d6 100%); padding: 30px; border-radius: 35px;
-            border: 6px solid #0a330e; width: 92%; max-width: 800px; position: relative; box-shadow: 0 15px 0px #0a330e; text-align: center;
-        }
-        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 36px; font-weight: bold; color: #d32f2f; cursor: pointer; z-index: 10; transition: transform 0.2s; }
-        .close-modal:hover { transform: scale(1.2); }
-        
-        .video-flex { display: flex; gap: 20px; margin-top: 15px; justify-content: center; }
-        .video-wrapper { text-align: left; flex: 1; }
-        .video-wrapper h4 { font-family: 'Fredoka', sans-serif; color: #1b5e20; margin: 0 0 8px 0; font-size: 14px; text-align: center; }
-        .video-box { width: 100%; height: 240px; border-radius: 20px; border: 4px solid #0a330e; background: #000; }
 
-        /* Tombol Pemicu di Kartu */
-        .btn-video-trigger {
-            background: linear-gradient(to bottom, #ff6f00, #e65100); color: white; border: 3px solid #0a330e;
-            padding: 12px 24px; border-radius: 15px; font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 15px;
-            cursor: pointer; box-shadow: 0 4px 0px #0a330e; margin-top: 15px; display: inline-flex; align-items: center; gap: 8px;
-            transition: background 0.2s;
+        /* --- PANEL RUMAH VIDEO INTEGRASI --- */
+        .video-embed-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
         }
-        .btn-video-trigger:active { transform: translateY(4px); box-shadow: 0 0px 0px #0a330e; }
-        .btn-video-trigger:hover { background: linear-gradient(to bottom, #ff8f00, #ff6f00); }
+        .video-item {
+            background: #f1f8e9;
+            padding: 10px;
+            border-radius: 18px;
+            border: 3px solid #1b5e20;
+        }
+        .video-item h4 {
+            font-family: 'Fredoka', sans-serif;
+            color: #1b5e20;
+            margin: 0 0 8px 0;
+            font-size: 14px;
+        }
+        .inline-video-box {
+            width: 100%;
+            height: 140px;
+            border-radius: 12px;
+            border: 2px solid #0a330e;
+            background-color: #000;
+        }
 
-        @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-        @keyframes floatCartoon { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
+        @keyframes popIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes floatCartoon {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
     </style>
 </head>
 <body>
 
-<audio id="bg-music" loop><source src="musicmateri.mp3" type="audio/mpeg"></audio>
+<audio id="bg-music" loop>
+    <source src="musicmateri.mp3" type="audio/mpeg">
+</audio>
 
 <div class="container">
     <header>
@@ -159,7 +307,8 @@
                 <span id="act-time" class="activity-time">Waktu: --:--</span>
                 <div id="act-title" class="activity-title">Memuat...</div>
                 <p id="act-detail" class="activity-detail">Materi...</p>
-                <div id="video-button-container" style="text-align: center;"></div>
+                
+                <div id="video-embed-container"></div>
             </div>
 
             <div>
@@ -182,25 +331,6 @@
     </div>
 </div>
 
-<div id="videoModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeVideoModal()">×</span>
-        <h3 style="font-family: 'Fredoka', sans-serif; color: #1b5e20; margin: 0 0 15px 0; font-size: 24px;">📺 Media Lagu Wajib</h3>
-
-        <div class="video-flex">
-            <div class="video-wrapper">
-                <h4>🇮🇩 1. Indonesia Raya 3 Stanza</h4>
-                <video id="playerIndonesia" class="video-box" controls src="indonesia_raya.mp4" preload="auto"></video>
-            </div>
-
-            <div class="video-wrapper">
-                <h4>🕌 2. Mars Madrasah</h4>
-                <video id="playerMars" class="video-box" controls src="mars_madrasah.mp4" preload="auto"></video>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
     const idPhotos = {
         abdurrahman: "18OK2aJd-rJqoMr9TjOgZzhv5lkysJ55w",
@@ -212,43 +342,65 @@
         irmaNur: "18bqrkUSWN3kU9hrnttnEe4TcBMAZCKd0"
     };
 
-    function getDirectLink(id) { return `https://lh3.googleusercontent.com/d/$${id}`; }
+    function getDirectLink(id) {
+        return `https://lh3.googleusercontent.com/d/${id}`;
+    }
 
     const jadwalSenin = [
         {
-            waktu: "06.30 - 07.15 WIB", judul: "Pembiasaan Pagi & Ritual Pembuka Wajib",
+            waktu: "06.30 - 07.15 WIB",
+            judul: "Pembiasaan Pagi & Ritual Pembuka Wajib",
             detail: "Muroja'ah Surat Pendek dan Sholat Dhuha Berjamaah bersama murid.",
-            petugas: [{ nama: "Ustd. Abdurrahman", foto: getDirectLink(idPhotos.abdurrahman) }, { nama: "Ustd. Rofiq", foto: getDirectLink(idPhotos.rofiq) }],
+            petugas: [
+                { nama: "Ustd. Abdurrahman", foto: getDirectLink(idPhotos.abdurrahman) },
+                { nama: "Ustd. Rofiq", foto: getDirectLink(idPhotos.rofiq) }
+            ],
             durasi: 2700
         },
         {
-            waktu: "07.15 - 08.00 WIB", judul: "Pembukaan & Ice Breaking",
+            waktu: "07.15 - 08.00 WIB",
+            judul: "Pembukaan & Ice Breaking",
             detail: "Menyanyikan Lagu Indonesia Raya & Mars Madrasah, Sambutan Kepala Madrasah, dilanjutkan permainan Edukatif Lempar Bola Nama.",
-            petugas: [{ nama: "Ustdz. Siti Lailatul F.", foto: getDirectLink(idPhotos.sitiLailatul) }, { nama: "Ustdz. Kusuma Wardani", foto: getDirectLink(idPhotos.kusumaWardani) }],
+            petugas: [
+                { nama: "Ustdz. Siti Lailatul F.", foto: getDirectLink(idPhotos.sitiLailatul) },
+                { nama: "Ustdz. Kusuma Wardani", foto: getDirectLink(idPhotos.kusumaWardani) }
+            ],
             durasi: 2700 
         },
         {
-            waktu: "08.00 - 08.30 WIB", judul: "Matamuda Rising Stars Quiz & Reward",
+            waktu: "08.00 - 08.30 WIB",
+            judul: "Matamuda Rising Stars Quiz & Reward",
             detail: "Sosialisasi Aplikasi dan Regulasi Bintang Harian Matamuda Rising Stars.",
-            petugas: [{ nama: "Ustd. Sulaiman Wahyu", foto: getDirectLink(idPhotos.sulaimanWahyu) }],
+            petugas: [
+                { nama: "Ustd. Sulaiman Wahyu", foto: getDirectLink(idPhotos.sulaimanWahyu) }
+            ],
             durasi: 1800 
         },
         {
-            waktu: "08.30 - 09.00 WIB", judul: "Istirahat Ringan / Snack Time",
+            waktu: "08.30 - 09.00 WIB",
+            judul: "Istirahat Ringan / Snack Time",
             detail: "Murid menikmati snack sehat bersama dibimbing adab makan yang benar.",
-            petugas: [{ nama: "Ustdz. Baratut", foto: getDirectLink(idPhotos.baratut) }],
+            petugas: [
+                { nama: "Ustdz. Baratut", foto: getDirectLink(idPhotos.baratut) }
+            ],
             durasi: 1800
         },
         {
-            waktu: "09.00 - 09.45 WIB", judul: "Eksplorasi Lingkungan: Amazing Race",
+            waktu: "09.00 - 09.45 WIB",
+            judul: "Eksplorasi Lingkungan: Amazing Race",
             detail: "Berkeliling area madrasah (kelas, perpus, UKS dll) secara berkelompok.",
-            petugas: [{ nama: "Ustdz. Irma Nur Waqiah", foto: getDirectLink(idPhotos.irmaNur) }],
+            petugas: [
+                { nama: "Ustdz. Irma Nur Waqiah", foto: getDirectLink(idPhotos.irmaNur) }
+            ],
             durasi: 2700
         },
         {
-            waktu: "09.45 - 10.30 WIB", judul: "Ritual Penutup & Apresiasi",
+            waktu: "09.45 - 10.30 WIB",
+            judul: "Ritual Penutup & Apresiasi",
             detail: "Refleksi harian 'Bintang Hari Ini', Tepuk Panca Cinta, Berdoa dan Pulang.",
-            petugas: [{ nama: "Ustd. Sulaiman Wahyu", foto: getDirectLink(idPhotos.sulaimanWahyu) }],
+            petugas: [
+                { nama: "Ustd. Sulaiman Wahyu", foto: getDirectLink(idPhotos.sulaimanWahyu) }
+            ],
             durasi: 2700
         }
     ];
@@ -263,10 +415,13 @@
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let osc = audioCtx.createOscillator();
         let gain = audioCtx.createGain();
-        osc.type = 'sine'; osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime);
         gain.gain.setValueAtTime(1, audioCtx.currentTime);
-        osc.connect(gain); gain.connect(audioCtx.destination);
-        osc.start(); osc.stop(audioCtx.currentTime + 2); 
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 2); 
     }
 
     function loadActivity(index) {
@@ -283,6 +438,7 @@
             document.getElementById("btn-next").disabled = true;
             music.pause();
             document.getElementById("music-status").innerText = "Mati";
+            document.getElementById("video-embed-container").innerHTML = "";
             return;
         }
 
@@ -297,33 +453,62 @@
             const wrapper = document.createElement("div");
             wrapper.className = "speaker-wrapper";
             wrapper.style.animationDelay = `${i * 0.4}s`;
-            wrapper.innerHTML = `<img class="speaker-photo" src="${p.foto}" alt="${p.nama}"><div class="speaker-name">${p.nama}</div>`;
+            
+            const img = document.createElement("img");
+            img.className = "speaker-photo";
+            img.src = p.foto;
+            img.alt = p.nama;
+            
+            const nameTag = document.createElement("div");
+            nameTag.className = "speaker-name";
+            nameTag.innerText = p.nama;
+            
+            wrapper.appendChild(img);
+            wrapper.appendChild(nameTag);
             container.appendChild(wrapper);
         });
-
-        // MANAJEMEN TOMBOL DI SLIDE 2
-        const videoBtnContainer = document.getElementById("video-button-container");
-        if (index === 1) { 
-            videoBtnContainer.innerHTML = `
-                <button class="btn-video-trigger" onclick="openVideoModal()">
-                    🎬 Buka Pemutar Indonesia Raya & Mars
-                </button>
-            `;
-        } else {
-            videoBtnContainer.innerHTML = "";
-        }
 
         timeLeft = data.durasi;
         updateTimerDisplay();
         
         document.getElementById("btn-start").disabled = false;
         document.getElementById("btn-pause").disabled = true;
+
+        // --- SISTEM INLINE VIDEO (TANPA POP-UP) ---
+        const videoEmbedContainer = document.getElementById("video-embed-container");
+        if (index === 1) { 
+            // Otomatis cetak box player mp4 langsung di kartu materi jika ada di Aktivitas Ke-2
+            videoEmbedContainer.innerHTML = `
+                <div class="video-embed-panel">
+                    <div class="video-item">
+                        <h4>1. Indonesia Raya 3 Stanza</h4>
+                        <video class="inline-video-box" src="indonesia_raya.mp4" controls onplay="handleVideoPlay()"></video>
+                    </div>
+                    <div class="video-item">
+                        <h4>2. Mars Madrasah</h4>
+                        <video class="inline-video-box" src="mars_madrasah.mp4" controls onplay="handleVideoPlay()"></video>
+                    </div>
+                </div>
+            `;
+        } else {
+            // Bersihkan player di sesi lainnya
+            videoEmbedContainer.innerHTML = "";
+        }
+    }
+
+    // Fungsi otomatis pause lagu latar belakang jika user memutar salah satu video mp4
+    function handleVideoPlay() {
+        if (isRunning) {
+            pauseTimer();
+        }
     }
 
     function updateTimerDisplay() {
         let minutes = Math.floor(timeLeft / 60);
         let seconds = timeLeft % 60;
-        document.getElementById("timer").innerText = `${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        document.getElementById("timer").innerText = `${minutes}:${seconds}`;
     }
 
     function startTimer() {
@@ -331,7 +516,6 @@
         isRunning = true;
         document.getElementById("btn-start").disabled = true;
         document.getElementById("btn-pause").disabled = false;
-
         music.play().catch(e => console.log("Izin audio aktif"));
         document.getElementById("music-status").innerText = "Looping 🎵";
 
@@ -364,27 +548,6 @@
         isRunning = false;
         currentIndex++;
         loadActivity(currentIndex);
-    }
-
-    // FUNGSI POPUP LANCAR TANPA BLANK STUCK COOKIES
-    function openVideoModal() {
-        if (isRunning) {
-            pauseTimer();
-        }
-        // Matikan backsound musik utama
-        music.pause();
-        document.getElementById("music-status").innerText = "Mati";
-
-        // Tampilkan modal popup
-        document.getElementById("videoModal").style.display = "flex";
-    }
-
-    function closeVideoModal() {
-        document.getElementById("videoModal").style.display = "none";
-        
-        // Pause pemutar video internal agar suaranya langsung mati total saat ditutup
-        document.getElementById("playerIndonesia").pause();
-        document.getElementById("playerMars").pause();
     }
 
     loadActivity(currentIndex);
