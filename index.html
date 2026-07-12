@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan & Timer MATAMUDA - Senin (Desktop Premium)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            /* Menggunakan Backdrop Utama yang Anda berikan */
+            background: url('https://lh3.googleusercontent.com/d/1DWgcohqNfViclL0SIQIIo2QmTyBhKyEX') no-repeat center center fixed;
+            background-size: cover;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Ditempatkan pas di area ruang kosong putih backdrop */
+        .container {
+            width: 94%;
+            max-width: 1250px;
+            background: rgba(255, 255, 255, 0.97);
+            padding: 40px;
+            border-radius: 32px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            border-top: 12px solid #2e7d32;
+            backdrop-filter: blur(10px);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        h1 { 
+            font-family: 'Fredoka', sans-serif;
+            color: #1b5e20; 
+            margin: 0 0 4px 0; 
+            font-size: 38px;
+        }
+        h2 { 
+            font-size: 14px; 
+            color: #66bb6a; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        .desktop-grid {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            justify-content: center;
+            min-height: 420px;
+        }
+
+        /* --- TAMPILAN FOTO PEMATERI SETENGAH BADAN & TRANSPARAN BAWAH --- */
+        .speakers-column {
+            flex: 1.3;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 25px;
+            height: 400px;
+            position: relative;
+        }
+
+        .speaker-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            animation: slideUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .speaker-photo {
+            width: 200px;
+            height: 300px;
+            object-fit: contain; /* Agar potongan badan asli tidak terpotong aneh */
+            /* Efek Masking pudar transparan di bagian bawah baju */
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.12));
+        }
+
+        .speaker-name {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 800;
+            color: #1b5e20;
+            background: #e8f5e9;
+            padding: 8px 16px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border: 1px solid #c8e6c9;
+            white-space: nowrap;
+        }
+
+        /* --- AREA KANAN: MATERI & TIMER --- */
+        .info-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 24px;
+            border: 1px solid #e8f5e9;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            height: 400px;
+        }
+
+        .activity-card { text-align: left; }
+        .activity-title { 
+            font-family: 'Fredoka', sans-serif;
+            font-size: 26px; 
+            color: #2e7d32; 
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        .activity-time { 
+            font-size: 14px; 
+            color: #ef6c00; 
+            font-weight: 700; 
+            display: inline-block;
+            background: #fff3e0;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+        .activity-detail { 
+            font-size: 15px; 
+            line-height: 1.6;
+            color: #455a64;
+            margin: 0;
+        }
+
+        .timer-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #e0e0e0;
+        }
+        .timer-display {
+            font-size: 68px;
+            font-weight: 800;
+            color: #c62828;
+            font-family: monospace;
+            background: #ffebee;
+            padding: 2px 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(198, 40, 40, 0.1);
+        }
+        .music-control {
+            background: #e1f5fe;
+            border: 1px solid #b3e5fc;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #0288d1;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .controls button {
+            flex: 1;
+            padding: 15px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-start { background-color: #2e7d32; color: white; }
+        .btn-start:hover { background-color: #1b5e20; transform: translateY(-2px); }
+        .btn-pause { background-color: #ffa000; color: white; }
+        .btn-pause:hover { background-color: #f57c00; transform: translateY(-2px); }
+        .btn-next { background-color: #0288d1; color: white; }
+        .btn-next:hover { background-color: #01579b; transform: translateY(-2px); }
+        
+        .controls button:disabled { 
+            background-color: #cfd8dc !important; 
+            color: #90a4ae !important;
+            cursor: not-allowed; 
+            transform: none !important;
+        }
+
+        .status-footer { display: flex; justify-content: center; margin-top: 20px; }
+        .progress-badge {
+            font-size: 12px; color: #78909c; font-weight: 700;
+            background: #eceff1; padding: 6px 16px; border-radius: 30px;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<audio id="bg-music" loop>
+    <source src="https://docs.google.com/uc?export=download&id=15uOKGTUiNSqvo9ZD79oA1J3S7gWP99Te" type="audio/mpeg">
+</audio>
+
+<div class="container">
+    <header>
+        <h1>📌 PANDUAN AKTIVITAS MATAMUDA</h1>
+        <h2>MIN 3 BONDOWOSO - HARI SENIN (HARI KE-1)</h2>
+    </header>
+
+    <div class="desktop-grid">
+        <div class="speakers-column" id="speakers-container"></div>
+
+        <div class="info-column">
+            <div class="activity-card">
+                <span id="act-time" class="activity-time">Waktu: --:--</span>
+                <div id="act-title" class="activity-title">Memuat...</div>
+                <p id="act-detail" class="activity-detail">Materi...</p>
+            </div>
+
+            <div>
+                <div class="timer-section">
+                    <div class="timer-display" id="timer">00:00</div>
+                    <div class="music-control">🎵 Musik: <span id="music-status">Mati</span></div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn-start" id="btn-start" onclick="startTimer()">MULAI</button>
+                    <button class="btn-pause" id="btn-pause" onclick="pauseTimer()" disabled>PAUSE</button>
+                    <button class="btn-next" id="btn-next" onclick="nextActivity()">LANJUT KLIK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="status-footer">
+        <div class="progress-badge" id="progress">Aktivitas 1 dari 6</div>
+    </div>
+</div>
+
+<script>
+    // FIX DATA & ID DRIVE: Pemetaan Akurat ID Foto Anda Agar Tidak Saling Tertukar
+    const idPhotos = {
+        abdurrahman: "18OK2aJd-rJqoMr9TjOgZzhv5lkysJ55w",
+        rofiq: "1-UnhtkKqrjxvWh7muXhG-AFJ5DqV7TjT",
+        sitiLailatul: "1Lxr3PuzOkG5RghYU6X3s6l1YGNoSdh3A",
+        kusumaWardani: "1CroqKQYrHsDzZOBiTI4iFdFEA5l7_EmK",
+        sulaimanWahyu: "15Nk4hQwZQZ9mQOwRWcmWryqkiKMcWk9P",
+        baratut: "1bz5tmvLoVopX37NGzpIPXIDLO58VrTEb",
+        irmaNur: "18bqrkUSWN3kU9hrnttnEe4TcBMAZCKd0"
+    };
+
+    // Fungsi konversi otomatis link agar background gambar transparan bawaan file terbaca sempurna
+    function getDirectLink(id) {
+        return `https://lh3.googleusercontent.com/d/${id}`;
+    }
+
+    // Koreksi data pembagian jadwal harian & pencocokan nama
+    const jadwalSenin = [
+        {
+            waktu: "06.30 - 07.15 WIB",
+            judul: "Pembiasaan Pagi & Ritual Pembuka Wajib",
+            detail: "Muroja'ah Surat Pendek dan Sholat Dhuha Berjamaah bersama murid.",
+            petugas: [
+                { nama: "Ustd. Abdurrahman", foto: getDirectLink(idPhotos.abdurrahman) },
+                { nama: "Ustd. Rofiq", foto: getDirectLink(idPhotos.rofiq) }
+            ],
+            durasi: 2700
+        },
+        {
+            waktu: "07.15 - 08.00 WIB",
+            judul: "Pembukaan & Ice Breaking",
+            detail: "Menyanyikan Lagu Indonesia Raya & Mars Madrasah, Sambutan Kepala Madrasah, dilanjutkan permainan Edukatif Lempar Bola Nama.",
+            petugas: [
+                { nama: "Ustdz. Siti Lailatul F.", foto: getDirectLink(idPhotos.sitiLailatul) },
+                { nama: "Ustdz. Kusuma Wardani", foto: getDirectLink(idPhotos.kusumaWardani) }
+            ],
+            durasi: 2700 
+        },
+        {
+            waktu: "08.00 - 08.30 WIB",
+            judul: "Matamuda Rising Stars Quiz & Reward",
+            detail: "Sosialisasi Aplikasi dan Regulasi Bintang Harian Matamuda Rising Stars.",
+            petugas: [
+                { nama: "Ustd. Sulaiman Wahyu", foto: getDirectLink(idPhotos.sulaimanWahyu) }
+            ],
+            durasi: 1800 
+        },
+        {
+            waktu: "08.30 - 09.00 WIB",
+            judul: "Istirahat Ringan / Snack Time",
+            detail: "Murid menikmati snack sehat bersama dibimbing adab makan yang benar.",
+            petugas: [
+                { nama: "Ustdz. Baratut", foto: getDirectLink(idPhotos.baratut) }
+            ],
+            durasi: 1800
+        },
+        {
+            waktu: "09.00 - 09.45 WIB",
+            judul: "Eksplorasi Lingkungan: Amazing Race",
+            detail: "Berkeliling area madrasah (kelas, perpus, UKS dll) secara berkelompok.",
+            petugas: [
+                { nama: "Ustdz. Irma Nur Waqiah", foto: getDirectLink(idPhotos.irmaNur) }
+            ],
+            durasi: 2700
+        },
+        {
+            waktu: "09.45 - 10.30 WIB",
+            judul: "Ritual Penutup & Apresiasi",
+            detail: "Refleksi harian 'Bintang Hari Ini', Tepuk Panca Cinta, Berdoa dan Pulang.",
+            petugas: [
+                { nama: "Ustd. Sulaiman Wahyu", foto: getDirectLink(idPhotos.sulaimanWahyu) }
+            ],
+            durasi: 2700
+        }
+    ];
+
+    let currentIndex = 0;
+    let timeLeft = 0;
+    let timerInterval = null;
+    let isRunning = false;
+    const music = document.getElementById("bg-music");
+
+    function playAlarmEffect() {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let osc = audioCtx.createOscillator();
+        let gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+        gain.gain.setValueAtTime(1, audioCtx.currentTime);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 2); 
+    }
+
+    function loadActivity(index) {
+        const container = document.getElementById("speakers-container");
+        container.innerHTML = ""; 
+
+        if (index >= jadwalSenin.length) {
+            document.getElementById("act-title").innerText = "🎉 Acara Hari Senin Selesai!";
+            document.getElementById("act-time").style.display = "none";
+            document.getElementById("act-detail").innerText = "Rangkaian acara hari pertama selesai dilaksanakan.";
+            document.getElementById("timer").innerText = "00:00";
+            document.getElementById("btn-start").disabled = true;
+            document.getElementById("btn-pause").disabled = true;
+            document.getElementById("btn-next").disabled = true;
+            music.pause();
+            document.getElementById("music-status").innerText = "Mati";
+            return;
+        }
+
+        const data = jadwalSenin[index];
+        document.getElementById("act-title").innerText = data.judul;
+        document.getElementById("act-time").style.display = "inline-block";
+        document.getElementById("act-time").innerText = "⏰ " + data.waktu;
+        document.getElementById("act-detail").innerText = data.detail;
+        document.getElementById("progress").innerText = `Aktivitas ${index + 1} dari ${jadwalSenin.length}`;
+        
+        data.petugas.forEach(p => {
+            const wrapper = document.createElement("div");
+            wrapper.className = "speaker-wrapper";
+            
+            const img = document.createElement("img");
+            img.className = "speaker-photo";
+            img.src = p.foto;
+            img.alt = p.nama;
+            
+            const nameTag = document.createElement("div");
+            nameTag.className = "speaker-name";
+            nameTag.innerText = p.nama;
+            
+            wrapper.appendChild(img);
+            wrapper.appendChild(nameTag);
+            container.appendChild(wrapper);
+        });
+
+        timeLeft = data.durasi;
+        updateTimerDisplay();
+        
+        document.getElementById("btn-start").disabled = false;
+        document.getElementById("btn-pause").disabled = true;
+    }
+
+    function updateTimerDisplay() {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        document.getElementById("timer").innerText = `${minutes}:${seconds}`;
+    }
+
+    function startTimer() {
+        if (isRunning) return;
+        isRunning = true;
+        document.getElementById("btn-start").disabled = true;
+        document.getElementById("btn-pause").disabled = false;
+
+        music.play().catch(e => console.log("Izin audio aktif"));
+        document.getElementById("music-status").innerText = "Looping 🎵";
+
+        timerInterval = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                updateTimerDisplay();
+            } else {
+                clearInterval(timerInterval);
+                isRunning = false;
+                music.pause();
+                document.getElementById("music-status").innerText = "Mati";
+                playAlarmEffect();
+                alert(`Sesi "${jadwalSenin[currentIndex].judul}" Selesai!`);
+            }
+        }, 1000);
+    }
+
+    function pauseTimer() {
+        clearInterval(timerInterval);
+        isRunning = false;
+        music.pause();
+        document.getElementById("music-status").innerText = "Dijeda ⏸️";
+        document.getElementById("btn-start").disabled = false;
+        document.getElementById("btn-pause").disabled = true;
+    }
+
+    function nextActivity() {
+        clearInterval(timerInterval);
+        isRunning = false;
+        currentIndex++;
+        loadActivity(currentIndex);
+    }
+
+    loadActivity(currentIndex);
+</script>
+
+</body>
+</html>
