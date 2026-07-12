@@ -162,7 +162,7 @@
             margin-bottom: 10px;
         }
 
-        /* --- TIMER BALON EMAS & MERAH --- */
+        /* --- TIMER --- */
         .timer-section {
             display: flex;
             align-items: center;
@@ -211,25 +211,13 @@
             transition: transform 0.1s ease, box-shadow 0.1s ease;
         }
         
-        .btn-start { 
-            background: linear-gradient(to bottom, #4caf50, #2e7d32); 
-            color: white; 
-            box-shadow: 0 6px 0px #0c3a10; 
-        }
+        .btn-start { background: linear-gradient(to bottom, #4caf50, #2e7d32); color: white; box-shadow: 0 6px 0px #0c3a10; }
         .btn-start:active { transform: translateY(6px); box-shadow: 0 0px 0px #0c3a10; }
 
-        .btn-pause { 
-            background: linear-gradient(to bottom, #ffb300, #ff8f00); 
-            color: white; 
-            box-shadow: 0 6px 0px #b56500; 
-        }
+        .btn-pause { background: linear-gradient(to bottom, #ffb300, #ff8f00); color: white; box-shadow: 0 6px 0px #b56500; }
         .btn-pause:active { transform: translateY(6px); box-shadow: 0 0px 0px #b56500; }
 
-        .btn-next { 
-            background: linear-gradient(to bottom, #29b6f6, #0288d1); 
-            color: white; 
-            box-shadow: 0 6px 0px #01579b; 
-        }
+        .btn-next { background: linear-gradient(to bottom, #29b6f6, #0288d1); color: white; box-shadow: 0 6px 0px #01579b; }
         .btn-next:active { transform: translateY(6px); box-shadow: 0 0px 0px #01579b; }
         
         .controls button:disabled { 
@@ -292,18 +280,22 @@
         .video-flex {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
             margin-top: 15px;
         }
 
         .video-wrapper {
             text-align: left;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px;
+            border-radius: 25px;
+            border: 3px dashed #1b5e20;
         }
 
         .video-wrapper h4 {
             font-family: 'Fredoka', sans-serif;
             color: #1b5e20;
-            margin: 0 0 8px 0;
+            margin: 0 0 10px 0;
         }
 
         .video-box {
@@ -311,9 +303,32 @@
             height: 250px;
             border-radius: 20px;
             border: 4px solid #0a330e;
+            background-color: #000;
+            display: none; /* Disembunyikan dulu sebelum diklik play */
         }
 
-        /* Tombol Pemicu di Kartu Informasi */
+        /* Tombol Play Internal Modal */
+        .btn-play-video {
+            background: linear-gradient(to bottom, #4caf50, #2e7d32);
+            color: white;
+            border: 3px solid #0a330e;
+            padding: 10px 20px;
+            border-radius: 15px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 0px #0a330e;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-play-video:active {
+            transform: translateY(4px);
+            box-shadow: 0 0px 0px #0a330e;
+        }
+
+        /* Tombol Pemicu Utama */
         .btn-video-trigger {
             background: linear-gradient(to bottom, #ff6f00, #e65100);
             color: white;
@@ -330,12 +345,8 @@
             align-items: center;
             gap: 8px;
         }
-        .btn-video-trigger:active {
-            transform: translateY(4px);
-            box-shadow: 0 0px 0px #0a330e;
-        }
+        .btn-video-trigger:active { transform: translateY(4px); box-shadow: 0 0px 0px #0a330e; }
 
-        /* ANIMASI GAYA KARTUN */
         @keyframes popIn {
             0% { transform: scale(0.9); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
@@ -391,18 +402,20 @@
 
 <div id="videoModal" class="modal">
     <div class="modal-content">
-        <span class="close-modal" onclick="closeVideoModal()">&times;</span>
+        <span class="close-modal" onclick="closeVideoModal()">×</span>
         <h3 style="font-family: 'Fredoka', sans-serif; color: #1b5e20; margin: 0 0 15px 0; font-size: 24px;">📺 Media Lagu Wajib</h3>
 
         <div class="video-flex">
             <div class="video-wrapper">
                 <h4>1. Lagu Indonesia Raya 3 Stanza</h4>
-                <iframe id="playerIndonesia" class="video-box" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <button id="btnPlayIndo" class="btn-play-video" onclick="playVideo('Indonesia')">▶️ Putar Video</button>
+                <video id="playerIndonesia" class="video-box" controls></video>
             </div>
 
             <div class="video-wrapper">
                 <h4>2. Mars Madrasah</h4>
-                <iframe id="playerMars" class="video-box" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <button id="btnPlayMars" class="btn-play-video" onclick="playVideo('Mars')">▶️ Putar Video</button>
+                <video id="playerMars" class="video-box" controls></video>
             </div>
         </div>
     </div>
@@ -550,7 +563,6 @@
         document.getElementById("btn-start").disabled = false;
         document.getElementById("btn-pause").disabled = true;
 
-        // --- MANAJEMEN TOMBOL VIDEO ---
         const videoBtnContainer = document.getElementById("video-button-container");
         if (index === 1) { 
             videoBtnContainer.innerHTML = `
@@ -571,12 +583,12 @@
         document.getElementById("timer").innerText = `${minutes}:${seconds}`;
     }
 
+    // Timer functions
     function startTimer() {
         if (isRunning) return;
         isRunning = true;
         document.getElementById("btn-start").disabled = true;
         document.getElementById("btn-pause").disabled = false;
-
         music.play().catch(e => console.log("Izin audio aktif"));
         document.getElementById("music-status").innerText = "Looping 🎵";
 
@@ -611,23 +623,47 @@
         loadActivity(currentIndex);
     }
 
-    // Inisialisasi awal aplikasi
     loadActivity(currentIndex);
 
-    // --- PENGENDALI MODAL POP-UP ---
+    // --- MANAJEMEN MODAL POP-UP VIDEO ON-CLICK ---
     function openVideoModal() {
         if (isRunning) {
             pauseTimer();
         }
-        document.getElementById("playerIndonesia").src = "indonesiaraya.mp4"; 
-        document.getElementById("playerMars").src = "marsmadrasah.mp4"; 
         document.getElementById("videoModal").style.display = "flex";
+    }
+
+    // Fungsi pemicu saat tombol Putar Lagu internal diklik
+    function playVideo(tipe) {
+        const videoElement = document.getElementById("player" + tipe);
+        const buttonElement = document.getElementById("btnPlay" + tipe);
+
+        // Beri alamat file video lokal sesuai tombolnya
+        if (tipe === 'Indonesia') {
+            videoElement.src = "indonesia_raya.mp4"; // <-- Nama file video Indonesia Raya kamu di GitHub
+        } else if (tipe === 'Mars') {
+            videoElement.src = "mars_madrasah.mp4"; // <-- Nama file video Mars kamu di GitHub
+        }
+
+        // Tampilkan tag videonya, lalu jalankan play
+        buttonElement.style.display = "none";
+        videoElement.style.display = "block";
+        videoElement.load();
+        videoElement.play();
     }
 
     function closeVideoModal() {
         document.getElementById("videoModal").style.display = "none";
-        document.getElementById("playerIndonesia").src = "";
-        document.getElementById("playerMars").src = "";
+        
+        // Matikan paksa pemutar video & reset tampilan tombol asal
+        const vIndo = document.getElementById("playerIndonesia");
+        const vMars = document.getElementById("playerMars");
+        
+        vIndo.pause(); vIndo.src = ""; vIndo.style.display = "none";
+        vMars.pause(); vMars.src = ""; vMars.style.display = "none";
+        
+        document.getElementById("btnPlayIndonesia").style.display = "inline-flex";
+        document.getElementById("btnPlayMars").style.display = "inline-flex";
     }
 </script>
 </body>
