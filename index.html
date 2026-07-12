@@ -133,7 +133,6 @@
             height: 390px;
         }
 
-        /* Khusus kartu materi agar isinya bisa di-scroll tipis jika video muncul */
         .activity-card { 
             text-align: left; 
             overflow-y: auto;
@@ -142,7 +141,6 @@
             margin-bottom: 10px;
         }
         
-        /* Desain scrollbar internal kartu biar lucu */
         .activity-card::-webkit-scrollbar { width: 6px; }
         .activity-card::-webkit-scrollbar-thumb { background-color: #1b5e20; border-radius: 10px; }
 
@@ -194,18 +192,41 @@
             border: 4px solid #7f100f;
             box-shadow: 0 6px 0px #500505, 0 10px 15px rgba(0,0,0,0.15);
         }
+        
+        /* Box Musik Latar dan Tombol Mandiri */
+        .music-panel-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+        }
         .music-control {
             background: #e1f5fe;
             border: 3px solid #0288d1;
-            padding: 6px 12px;
-            border-radius: 20px;
+            padding: 4px 10px;
+            border-radius: 12px;
             font-size: 11px;
             font-weight: 700;
             color: #0288d1;
-            box-shadow: 0 4px 0px #01579b;
+        }
+        .btn-music-toggle {
+            background: #0288d1;
+            color: white;
+            border: 2px solid #01579b;
+            border-radius: 12px;
+            padding: 5px 10px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 3px 0px #01579b;
+        }
+        .btn-music-toggle:active {
+            transform: translateY(3px);
+            box-shadow: 0 0px 0px #01579b;
         }
 
-        /* --- TOMBOL JELLY 3D CONTROLS --- */
+        /* --- TOMBOL CONTROLS UTAMA --- */
         .controls {
             display: flex;
             gap: 10px;
@@ -250,7 +271,7 @@
             border: 2px solid #0a330e;
         }
 
-        /* --- PANEL RUMAH VIDEO INTEGRASI --- */
+        /* --- INTEGRASI PANEL VIDEO --- */
         .video-embed-panel {
             display: flex;
             flex-direction: column;
@@ -314,7 +335,11 @@
             <div>
                 <div class="timer-section">
                     <div class="timer-display" id="timer">00:00</div>
-                    <div class="music-control">🎵 Musik: <span id="music-status">Mati</span></div>
+                    
+                    <div class="music-panel-wrapper">
+                        <div class="music-control">🎵 Musik: <span id="music-status">Mati</span></div>
+                        <button class="btn-music-toggle" onclick="toggleMusicManually()">⏯️ ON/OFF Backsound</button>
+                    </div>
                 </div>
 
                 <div class="controls">
@@ -409,6 +434,7 @@
     let timeLeft = 0;
     let timerInterval = null;
     let isRunning = false;
+    let isMusicPlaying = false; 
     const music = document.getElementById("bg-music");
 
     function playAlarmEffect() {
@@ -436,7 +462,9 @@
             document.getElementById("btn-start").disabled = true;
             document.getElementById("btn-pause").disabled = true;
             document.getElementById("btn-next").disabled = true;
+            
             music.pause();
+            isMusicPlaying = false;
             document.getElementById("music-status").innerText = "Mati";
             document.getElementById("video-embed-container").innerHTML = "";
             return;
@@ -474,10 +502,9 @@
         document.getElementById("btn-start").disabled = false;
         document.getElementById("btn-pause").disabled = true;
 
-        // --- SISTEM INLINE VIDEO (TANPA POP-UP) ---
+        // --- SISTEM INLINE VIDEO ---
         const videoEmbedContainer = document.getElementById("video-embed-container");
         if (index === 1) { 
-            // Otomatis cetak box player mp4 langsung di kartu materi jika ada di Aktivitas Ke-2
             videoEmbedContainer.innerHTML = `
                 <div class="video-embed-panel">
                     <div class="video-item">
@@ -491,15 +518,27 @@
                 </div>
             `;
         } else {
-            // Bersihkan player di sesi lainnya
             videoEmbedContainer.innerHTML = "";
         }
     }
 
-    // Fungsi otomatis pause lagu latar belakang jika user memutar salah satu video mp4
+    // Menghentikan musik latar secara paksa jika video mp4 lokal mulai diputar
     function handleVideoPlay() {
-        if (isRunning) {
-            pauseTimer();
+        music.pause();
+        isMusicPlaying = false;
+        document.getElementById("music-status").innerText = "Dijeda (Video Aktif) ⏸️";
+    }
+
+    // --- FUNGSI TOMBOL MUSIK MANDIRI (BARU) ---
+    function toggleMusicManually() {
+        if (isMusicPlaying) {
+            music.pause();
+            isMusicPlaying = false;
+            document.getElementById("music-status").innerText = "Mati";
+        } else {
+            music.play().catch(e => console.log("Izin audio aktif"));
+            isMusicPlaying = true;
+            document.getElementById("music-status").innerText = "Looping 🎵";
         }
     }
 
@@ -511,13 +550,19 @@
         document.getElementById("timer").innerText = `${minutes}:${seconds}`;
     }
 
+    // --- KONTROL TIMER UTAMA ---
     function startTimer() {
         if (isRunning) return;
         isRunning = true;
         document.getElementById("btn-start").disabled = true;
         document.getElementById("btn-pause").disabled = false;
-        music.play().catch(e => console.log("Izin audio aktif"));
-        document.getElementById("music-status").innerText = "Looping 🎵";
+
+        // Otomatis nyalakan musik saat start awal (jika belum menyala)
+        if (!isMusicPlaying && currentIndex !== 1) { 
+            music.play().catch(e => console.log("Izin audio aktif"));
+            isMusicPlaying = true;
+            document.getElementById("music-status").innerText = "Looping 🎵";
+        }
 
         timerInterval = setInterval(() => {
             if (timeLeft > 0) {
@@ -527,6 +572,7 @@
                 clearInterval(timerInterval);
                 isRunning = false;
                 music.pause();
+                isMusicPlaying = false;
                 document.getElementById("music-status").innerText = "Mati";
                 playAlarmEffect();
                 alert(`Sesi "${jadwalSenin[currentIndex].judul}" Selesai!`);
@@ -537,10 +583,9 @@
     function pauseTimer() {
         clearInterval(timerInterval);
         isRunning = false;
-        music.pause();
-        document.getElementById("music-status").innerText = "Dijeda ⏸️";
         document.getElementById("btn-start").disabled = false;
         document.getElementById("btn-pause").disabled = true;
+        // Timer dijeda, musik latar tetap dibiarkan mengalir/opsional diatur manual lewat tombol musik baru
     }
 
     function nextActivity() {
