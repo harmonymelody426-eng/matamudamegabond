@@ -67,44 +67,51 @@
             font-family: 'Fredoka', sans-serif; font-size: 13px; font-weight: 700;
             color: #1b5e20; background: #ffd700; padding: 8px 16px;
             border-radius: 18px; border: 3px solid #0a330e; box-shadow: 0 5px 0px #c5a000;
+            text-align: center;
         }
 
         /* --- KARTU INFORMASI --- */
         .info-column {
             flex: 1; display: flex; flex-direction: column; justify-content: space-between;
             background: #ffffff; padding: 25px; border-radius: 32px;
-            border: 5px solid #0a330e; height: 400px;
+            border: 5px solid #0a330e; height: 410px;
         }
-        .activity-card { overflow-y: auto; flex: 1; margin-bottom: 10px; }
+        .activity-card { overflow-y: auto; flex: 1; margin-bottom: 10px; padding-right: 5px; }
+        .activity-card::-webkit-scrollbar { width: 6px; }
+        .activity-card::-webkit-scrollbar-thumb { background-color: #1b5e20; border-radius: 10px; }
+        
         .activity-title { font-family: 'Fredoka', sans-serif; font-size: 22px; color: #1b5e20; margin-bottom: 5px; }
         .activity-time { 
             font-family: 'Fredoka', sans-serif; font-size: 12px; color: #fff;
             background: #ff6f00; padding: 4px 12px; border-radius: 15px; border: 2px solid #0a330e;
+            display: inline-block; margin-bottom: 10px;
         }
         .activity-detail { font-size: 14px; color: #37474f; font-weight: 600; margin: 10px 0; }
 
-        /* --- TOMBOL VIDEO (KHUSUS SLIDE 2) --- */
-        .video-controls-area { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+        /* --- AREA TOMBOL VIDEO (KHUSUS SLIDE 2) --- */
+        .video-controls-area { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
         .btn-video-choice {
             background: #2196f3; color: white; border: 3px solid #0a330e;
-            padding: 10px; border-radius: 15px; font-family: 'Fredoka', sans-serif;
+            padding: 12px; border-radius: 15px; font-family: 'Fredoka', sans-serif;
             font-weight: 700; cursor: pointer; box-shadow: 0 4px 0px #0d47a1;
             display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: background 0.2s;
         }
+        .btn-video-choice:hover { background: #1976d2; }
         .btn-video-choice:active { transform: translateY(4px); box-shadow: 0 0px 0px #0d47a1; }
-        .inline-player { width: 100%; height: 180px; border-radius: 15px; border: 3px solid #0a330e; display: none; background: #000; }
+        .inline-player { width: 100%; height: 160px; border-radius: 15px; border: 3px solid #0a330e; display: none; background: #000; margin-top: 5px; }
 
         /* --- PANEL TIMER & MUSIK --- */
         .timer-section {
             display: flex; align-items: center; justify-content: space-between;
-            padding-top: 10px; border-top: 3px dashed #ffd700;
+            padding-top: 10px; border-top: 3px dashed #ffd700; margin-top: 5px;
         }
         .timer-display {
             font-size: 42px; font-weight: 700; color: #ffffff; font-family: 'Fredoka', monospace;
             background: #d32f2f; padding: 5px 20px; border-radius: 15px; border: 3px solid #7f100f;
         }
         .music-box { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
-        .music-status-label { font-size: 10px; font-weight: 800; color: #0288d1; text-transform: uppercase; }
+        .music-status-label { font-size: 11px; font-weight: 800; color: #0288d1; text-transform: uppercase; }
         .btn-music-toggle {
             background: #0288d1; color: white; border: 2px solid #0a330e;
             padding: 6px 12px; border-radius: 10px; font-family: 'Fredoka', sans-serif;
@@ -122,7 +129,7 @@
         .btn-pause { background: #ffb300; color: white; box-shadow: 0 4px 0px #b56500; }
         .btn-next { background: #29b6f6; color: white; box-shadow: 0 4px 0px #01579b; }
         .controls button:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 0px 0px transparent; }
-        .controls button:disabled { background: #cfd8dc !important; border-color: #b0bec5; cursor: not-allowed; box-shadow: none; }
+        .controls button:disabled { background: #cfd8dc !important; border-color: #b0bec5; cursor: not-allowed; box-shadow: none; color: #90a4ae !important; }
 
         .progress-badge {
             margin-top: 15px; text-align: center; font-family: 'Fredoka'; font-size: 12px;
@@ -233,11 +240,14 @@
     function loadActivity(index) {
         const container = document.getElementById("speakers-container");
         const videoArea = document.getElementById("video-area");
+        
         container.innerHTML = "";
-        videoArea.innerHTML = "";
+        videoArea.innerHTML = ""; // Kosongkan area tombol video di awal slide
 
         if (index >= jadwalSenin.length) {
             document.getElementById("act-title").innerText = "🎉 Acara Selesai!";
+            document.getElementById("act-time").style.display = "none";
+            document.getElementById("act-detail").innerText = "Seluruh materi hari pertama selesai.";
             return;
         }
 
@@ -249,11 +259,14 @@
         
         data.petugas.forEach(p => {
             const wrapper = document.createElement("div");
+            wrapper.style.display = "flex";
+            wrapper.style.flexDirection = "column";
+            wrapper.style.alignItems = "center";
             wrapper.innerHTML = `<img class="speaker-photo" src="${p.foto}"><div class="speaker-name">${p.nama}</div>`;
             container.appendChild(wrapper);
         });
 
-        // TAMPILKAN TOMBOL VIDEO HANYA DI SLIDE 2 (INDEX 1)
+        // MASUKKAN TOMBOL SECARA AMAN JIKA DI SLIDE 2 (INDEX 1)
         if (index === 1) {
             videoArea.innerHTML = `
                 <button class="btn-video-choice" id="btn-indo" onclick="playLocalVideo('Indonesia')">🇮🇩 PUTAR INDONESIA RAYA</button>
@@ -269,20 +282,21 @@
     }
 
     function playLocalVideo(tipe) {
-        // Matikan musik latar
+        // Otomatis pause backsound musik agar tidak bentrok suara
         music.pause();
         isMusicPlaying = false;
         document.getElementById("music-status").innerText = "Mati";
 
-        // Sembunyikan tombol, tampilkan player
         if(tipe === 'Indonesia') {
             document.getElementById('btn-indo').style.display = 'none';
-            const p = document.getElementById('playerIndonesia');
-            p.style.display = 'block'; p.play();
+            const vIndo = document.getElementById('playerIndonesia');
+            vIndo.style.display = 'block'; 
+            vIndo.play();
         } else {
             document.getElementById('btn-mars').style.display = 'none';
-            const p = document.getElementById('playerMars');
-            p.style.display = 'block'; p.play();
+            const vMars = document.getElementById('playerMars');
+            vMars.style.display = 'block'; 
+            vMars.play();
         }
     }
 
@@ -292,7 +306,7 @@
             isMusicPlaying = false;
             document.getElementById("music-status").innerText = "Mati";
         } else {
-            music.play();
+            music.play().catch(e => console.log("Menunggu interaksi user"));
             isMusicPlaying = true;
             document.getElementById("music-status").innerText = "Aktif 🎵";
         }
@@ -310,14 +324,22 @@
         document.getElementById("btn-start").disabled = true;
         document.getElementById("btn-pause").disabled = false;
         
-        // Auto play music saat start (kecuali di slide video)
-        if (currentIndex !== 1) {
-            music.play(); isMusicPlaying = true; document.getElementById("music-status").innerText = "Aktif 🎵";
+        // Auto play backsound di awal jika bukan di slide 2
+        if (!isMusicPlaying && currentIndex !== 1) {
+            music.play().catch(e => console.log("Izin audio aktif"));
+            isMusicPlaying = true; 
+            document.getElementById("music-status").innerText = "Aktif 🎵";
         }
 
         timerInterval = setInterval(() => {
-            if (timeLeft > 0) { timeLeft--; updateTimerDisplay(); }
-            else { clearInterval(timerInterval); isRunning = false; alert("Waktu Selesai!"); }
+            if (timeLeft > 0) { 
+                timeLeft--; 
+                updateTimerDisplay(); 
+            } else { 
+                clearInterval(timerInterval); 
+                isRunning = false; 
+                alert("Sesi Selesai!"); 
+            }
         }, 1000);
     }
 
@@ -335,6 +357,7 @@
         loadActivity(currentIndex);
     }
 
+    // Inisialisasi awal aplikasi
     loadActivity(currentIndex);
 </script>
 </body>
