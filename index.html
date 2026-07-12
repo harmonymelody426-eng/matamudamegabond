@@ -214,6 +214,16 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Kita hanya titip keyframe animasi baru di sini agar JavaScript bisa memanggilnya */
+        @keyframes floatKids {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes blinkKidsStar {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
     </style>
 </head>
 <body>
@@ -222,16 +232,16 @@
     <source src="https://docs.google.com/uc?export=download&id=15uOKGTUiNSqvo9ZD79oA1J3S7gWP99Te" type="audio/mpeg">
 </audio>
 
-<div class="container">
+<div class="container" id="main-container">
     <header>
-        <h1>📌 PANDUAN AKTIVITAS MATAMUDA</h1>
+        <h1 id="main-title">📌 PANDUAN AKTIVITAS MATAMUDA</h1>
         <h2>MIN 3 BONDOWOSO - HARI SENIN (HARI KE-1)</h2>
     </header>
 
     <div class="desktop-grid">
         <div class="speakers-column" id="speakers-container"></div>
 
-        <div class="info-column">
+        <div class="info-column" id="info-card-column">
             <div class="activity-card">
                 <span id="act-time" class="activity-time">Waktu: --:--</span>
                 <div id="act-title" class="activity-title">Memuat...</div>
@@ -239,12 +249,12 @@
             </div>
 
             <div>
-                <div class="timer-section">
+                <div class="timer-section" id="timer-box">
                     <div class="timer-display" id="timer">00:00</div>
                     <div class="music-control">🎵 Musik: <span id="music-status">Mati</span></div>
                 </div>
 
-                <div class="controls">
+                <div class="controls" id="btn-group">
                     <button class="btn-start" id="btn-start" onclick="startTimer()">MULAI</button>
                     <button class="btn-pause" id="btn-pause" onclick="pauseTimer()" disabled>PAUSE</button>
                     <button class="btn-next" id="btn-next" onclick="nextActivity()">LANJUT KLIK</button>
@@ -259,7 +269,7 @@
 </div>
 
 <script>
-    // FIX DATA & ID DRIVE: Pemetaan Akurat ID Foto Anda Agar Tidak Saling Tertukar
+    // DATA ASLI TANPA UBAH SUBSTANSI
     const idPhotos = {
         abdurrahman: "18OK2aJd-rJqoMr9TjOgZzhv5lkysJ55w",
         rofiq: "1-UnhtkKqrjxvWh7muXhG-AFJ5DqV7TjT",
@@ -270,12 +280,10 @@
         irmaNur: "18bqrkUSWN3kU9hrnttnEe4TcBMAZCKd0"
     };
 
-    // Fungsi konversi otomatis link agar background gambar transparan bawaan file terbaca sempurna
     function getDirectLink(id) {
         return `https://lh3.googleusercontent.com/d/${id}`;
     }
 
-    // Koreksi data pembagian jadwal harian & pencocokan nama
     const jadwalSenin = [
         {
             waktu: "06.30 - 07.15 WIB",
@@ -341,6 +349,86 @@
     let isRunning = false;
     const music = document.getElementById("bg-music");
 
+    // --- INJEKSI JS MANIPULASI DOM UNTUK VISUAL MAJALAH ANAK ---
+    function applyKidsMagazineStyle() {
+        // 1. Tambah hiasan komik double border tebal pop art ke .container
+        const container = document.getElementById("main-container");
+        if (container) {
+            container.style.border = "6px solid #1b5e20";
+            container.style.outline = "6px solid #ffd700";
+            container.style.background = "rgba(255, 253, 245, 0.96)";
+            container.style.boxShadow = "0 30px 65px rgba(0,0,0,0.25)";
+        }
+
+        // 2. Efek bayangan pop-up pada Judul Utama
+        const title = document.getElementById("main-title");
+        if (title) {
+            title.style.textShadow = "3px 3px 0px #ffd700";
+        }
+
+        // 3. Modifikasi kolom info sebelah kanan biar bernuansa komik tebal
+        const infoColumn = document.getElementById("info-card-column");
+        if (infoColumn) {
+            infoColumn.style.border = "4px solid #0c2310";
+            infoColumn.style.boxShadow = "6px 6px 0px #0c2310";
+            infoColumn.style.borderRadius = "28px";
+        }
+
+        // 4. Modifikasi box waktu (badge oranye mencolok) & timer garis putus-putus emas
+        const actTime = document.getElementById("act-time");
+        if (actTime) {
+            actTime.style.color = "#ffffff";
+            actTime.style.background = "#ef6c00";
+            actTime.style.padding = "6px 16px";
+            actTime.style.boxShadow = "3px 3px 0px #0c2310";
+            actTime.style.border = "2px solid #0c2310";
+        }
+        const timerBox = document.getElementById("timer-box");
+        if (timerBox) {
+            timerBox.style.borderTop = "4px dashed #ffd700";
+        }
+        const timerDisplay = document.getElementById("timer");
+        if (timerDisplay) {
+            timerDisplay.style.fontFamily = "'Fredoka', monospace";
+            timerDisplay.style.border = "3px solid #c62828";
+            timerDisplay.style.boxShadow = "4px 4px 0px #c62828";
+            timerDisplay.style.borderRadius = "18px";
+        }
+
+        // 5. Tambah outline tebal pada kontrol tombol
+        const buttons = document.querySelectorAll("#btn-group button");
+        buttons.forEach(btn => {
+            btn.style.fontFamily = "'Fredoka', sans-serif";
+            btn.style.border = "3px solid #0c2310";
+            if (btn.classList.contains('btn-start')) btn.style.boxShadow = "3px 3px 0px #0c2310";
+            if (btn.classList.contains('btn-pause')) btn.style.boxShadow = "3px 3px 0px #0c2310";
+            if (btn.classList.contains('btn-next')) btn.style.boxShadow = "3px 3px 0px #0c2310";
+        });
+
+        // 6. Percantik progress badge di bawah
+        const progressBadge = document.getElementById("progress");
+        if (progressBadge) {
+            progressBadge.style.fontFamily = "'Fredoka', sans-serif";
+            progressBadge.style.fontSize = "13px";
+            progressBadge.style.color = "#fff";
+            progressBadge.style.background = "#1b5e20";
+            progressBadge.style.boxShadow = "3px 3px 0px #ffd700";
+        }
+
+        // 7. Membuat taburan bintang kosmetik di pojok kiri & kanan layar secara dinamis
+        if (!document.getElementById("star-left")) {
+            const sLeft = document.createElement("div");
+            sLeft.id = "star-left"; sLeft.innerText = "★";
+            sLeft.style.cssText = "position:absolute; top:12%; left:6%; color:#ffd700; font-size:26px; text-shadow:0 0 10px #ffd700; animation: blinkKidsStar 2s infinite ease-in-out; pointer-events:none; z-index:99;";
+            document.body.appendChild(sLeft);
+
+            const sRight = document.createElement("div");
+            sRight.id = "star-right"; sRight.innerText = "✦";
+            sRight.style.cssText = "position:absolute; bottom:12%; right:6%; color:#ffffff; font-size:20px; text-shadow:0 0 8px #ffffff; animation: blinkKidsStar 3s infinite ease-in-out 1s; pointer-events:none; z-index:99;";
+            document.body.appendChild(sRight);
+        }
+    }
+
     function playAlarmEffect() {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         let osc = audioCtx.createOscillator();
@@ -358,6 +446,24 @@
         const container = document.getElementById("speakers-container");
         container.innerHTML = ""; 
 
+        // Jalankan pengubah tampilan bergaya majalah lewat JS di sini
+        applyKidsMagazineStyle();
+
+        // Modifikasi container bingkai foto pemateri menjadi poster gradasi hijau interaktif
+        if (container) {
+            container.style.background = "linear-gradient(135deg, #a4db9b 0%, #1b5e20 100%)";
+            container.style.borderRadius = "28px";
+            container.style.padding = "20px";
+            container.style.border = "4px solid #0c2310";
+            container.style.boxShadow = "inset 0 0 20px rgba(0,0,0,0.25), 6px 6px 0px #ffd700";
+            
+            // Tambahkan emot bintang bersinar di pojok kiri atas poster
+            const sparkles = document.createElement("div");
+            sparkles.innerText = "✨";
+            sparkles.style.cssText = "position:absolute; top:15px; left:20px; font-size:24px;";
+            container.appendChild(sparkles);
+        }
+
         if (index >= jadwalSenin.length) {
             document.getElementById("act-title").innerText = "🎉 Acara Hari Senin Selesai!";
             document.getElementById("act-time").style.display = "none";
@@ -373,23 +479,36 @@
 
         const data = jadwalSenin[index];
         document.getElementById("act-title").innerText = data.judul;
+        document.getElementById("act-title").style.color = "#1b5e20"; // modifikasi judul materi
+        document.getElementById("act-title").style.fontWeight = "700";
         document.getElementById("act-time").style.display = "inline-block";
         document.getElementById("act-time").innerText = "⏰ " + data.waktu;
         document.getElementById("act-detail").innerText = data.detail;
+        document.getElementById("act-detail").style.fontWeight = "600"; // pertebal detail materi anak
         document.getElementById("progress").innerText = `Aktivitas ${index + 1} dari ${jadwalSenin.length}`;
         
-        data.petugas.forEach(p => {
+        data.petugas.forEach((p, i) => {
             const wrapper = document.createElement("div");
             wrapper.className = "speaker-wrapper";
+            // Menyuntikkan efek melayang berkelanjutan (floatKids) lewat inline style JS
+            wrapper.style.animation = "floatKids 4s ease-in-out infinite";
+            wrapper.style.animationDelay = `${i * 0.5}s`;
             
             const img = document.createElement("img");
             img.className = "speaker-photo";
             img.src = p.foto;
             img.alt = p.nama;
+            img.style.filter = "drop-shadow(5px 5px 0px #0c2310)"; // Bayangan pop art tebal ustadz
             
             const nameTag = document.createElement("div");
             nameTag.className = "speaker-name";
             nameTag.innerText = p.nama;
+            // Modifikasi badge nama agar melekat sempurna ke bawah baju & bergaya ceria
+            nameTag.style.marginTop = "-10px";
+            nameTag.style.background = "#ffd700";
+            nameTag.style.boxShadow = "4px 4px 0px #0c2310";
+            nameTag.style.border = "3px solid #0c2310";
+            nameTag.style.zIndex = "5";
             
             wrapper.appendChild(img);
             wrapper.appendChild(nameTag);
